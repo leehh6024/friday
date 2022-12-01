@@ -58,7 +58,7 @@ export default function Weather() {
           </View>
         ) : (
           <View>
-            <Text style={styles.title}>WEATHER</Text>
+            <Text style={styles.title}>오늘의 날씨</Text>
             <View style={styles.day}>
               <View>
                 <Fontisto
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   weather: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
-    height: 100,
+    height: 120,
     paddingHorizontal: 30,
     paddingVertical: 5,
   },

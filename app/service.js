@@ -10,7 +10,7 @@ const TownCleanerAPI = axios.create({
 
 const TrafficAPI = axios.create({});
 const NewsAPI = axios.create({});
-const TodoListAPI = axios.create({});
+const CalendarAPI = axios.create({});
 const WeatherAPI = axios.create({});
 
 export const API = {
