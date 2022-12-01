@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
+import Example from "./Example.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
@@ -60,13 +61,7 @@ export default function Weather() {
       <Text style={styles.header}>FRIDAY,</Text>
       <View style={styles.body}>
         <ScrollView>
-          <View style={styles.ex}>
-            <Text style={styles.exText}>FRIDAY,</Text>
-            <Text style={{ ...styles.exText, fontWeight: "400" }}>
-              오늘 날씨 알려줘
-            </Text>
-          </View>
-
+          <Example />
           <View style={styles.weather}>
             {days?.length === 0 ? (
               <View>
@@ -122,21 +117,6 @@ const styles = StyleSheet.create({
     flex: 2.0,
     backgroundColor: "#464646",
     width: SCREEN_WIDTH,
-  },
-  ex: {
-    height: 100,
-    width: SCREEN_WIDTH,
-    backgroundColor: "#eeeeee",
-    borderRadius: 25,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  exText: {
-    width: SCREEN_WIDTH,
-    color: "#A3C1C6",
-    paddingHorizontal: 30,
-    fontWeight: "800",
-    fontSize: "26",
   },
 
   weather: {
