@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as Location from "expo-location";
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Dimensions,
-  ActivityIndicator,
-} from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
-import Example from "./Example.js";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
 
 const icons = {
@@ -56,69 +46,45 @@ export default function Weather() {
     getWeather();
   }, []);
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Text style={styles.header}>FRIDAY,</Text>
-      <View style={styles.body}>
-        <ScrollView>
-          <Example />
-          <View style={styles.weather}>
-            {days?.length === 0 ? (
-              <View>
-                <ActivityIndicator
-                  color="#aaaaaa"
-                  size="large"
-                  style={{ marginTop: 30 }}
-                />
-              </View>
-            ) : (
-              <View>
-                <Text style={styles.title}>WEATHER</Text>
-                <View style={styles.day}>
-                  <View>
-                    <Fontisto
-                      name={icons[days[0].weather[0].main]}
-                      size="50"
-                      color="#aaaaaa"
-                    />
-                    <Text style={styles.description}>
-                      {days[0].weather[0].main}
-                    </Text>
-                  </View>
-                  <View>
-                    <Text style={styles.city}>{city}</Text>
-                    <Text style={styles.temp}>
-                      {parseFloat(days[0].temp.day).toFixed(1)}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            )}
+    <View>
+      <View style={styles.weather}>
+        {days?.length === 0 ? (
+          <View>
+            <ActivityIndicator
+              color="#aaaaaa"
+              size="large"
+              style={{ marginTop: 30 }}
+            />
           </View>
-        </ScrollView>
+        ) : (
+          <View>
+            <Text style={styles.title}>WEATHER</Text>
+            <View style={styles.day}>
+              <View>
+                <Fontisto
+                  name={icons[days[0].weather[0].main]}
+                  size="50"
+                  color="#aaaaaa"
+                />
+                <Text style={styles.description}>
+                  {days[0].weather[0].main}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.city}>{city}</Text>
+                <Text style={styles.temp}>
+                  {parseFloat(days[0].temp.day).toFixed(1)}
+                </Text>
+              </View>
+            </View>
+          </View>
+        )}
       </View>
-      <Text style={styles.footer}>hello im footer</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    flex: 0.24,
-    backgroundColor: "#B9CFDF",
-    // color: "#A3C1C6",
-    color: "white",
-    width: SCREEN_WIDTH,
-  },
-  body: {
-    flex: 2.0,
-    backgroundColor: "#464646",
-    width: SCREEN_WIDTH,
-  },
-
   weather: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
@@ -141,11 +107,5 @@ const styles = StyleSheet.create({
     color: "#aaaaaa",
     marginTop: -10,
     marginLeft: 10,
-  },
-
-  footer: {
-    flex: 0.26,
-    backgroundColor: "#B9CFDF",
-    width: SCREEN_WIDTH,
   },
 });
