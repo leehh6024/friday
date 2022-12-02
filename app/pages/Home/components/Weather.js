@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Location from "expo-location";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import axios from "axios";
-
-import { DeviceInfo } from "react-native-device-info";
-// or ES6+ destructured imports
-// import { getUniqueId, getManufacturer } from "react-native-device-info";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
 
@@ -25,53 +22,121 @@ export default function Weather() {
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
 
+  const getCoordinate = async () => {
+    const res = await getWeatherAPI();
+    console.log(res.data);
+  };
+
+  useEffect(() => {
+    // AsyncStorage.clear(); // 사용금지
+    idTestAPI();
+    getCoordinate();
+  }, []);
+
   const getWeather = async () => {
     const { granted } = await Location.requestForegroundPermissionsAsync();
     if (!granted) {
       setOk(false);
-    }
-    const {
-      coords: { latitude, longitude },
-    } = await Location.getCurrentPositionAsync({ accuracy: 5 });
-    const location = await Location.reverseGeocodeAsync(
-      { latitude, longitude },
-      { useGoogleMaps: false }
-    );
-    setCity(location[0].city);
+      const latitude = 37.511336;
+      const longitude = 127.086262;
+      const location = await Location.reverseGeocodeAsync(
+        { latitude, longitude },
+        { useGoogleMaps: false }
+      );
+      setCity(location[0].city);
 
-    const response = await fetch(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}&units=metric`
-    ).catch((error) => {
-      console.log(error);
-    });
-    const json = await response.json();
-    setDays(json.daily);
+      const response = await fetch(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}&units=metric`
+      ).catch((error) => {
+        console.log(error);
+      });
+      const json = await response.json();
+      setDays(json.daily);
+      // console.log(latitude, longitude);
+      // console.log(typeof latitude, typeof longitude);
+    } else {
+      const {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync({ accuracy: 5 });
+      const location = await Location.reverseGeocodeAsync(
+        { latitude, longitude },
+        { useGoogleMaps: false }
+      );
+      setCity(location[0].city);
+
+      const response = await fetch(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}&units=metric`
+      ).catch((error) => {
+        console.log(error);
+      });
+      const json = await response.json();
+      setDays(json.daily);
+      createWeatherAPI(latitude, longitude);
+      // console.log(latitude, longitude);
+      // console.log(typeof latitude, typeof longitude);
+    }
   };
+
   useEffect(() => {
     getWeather();
   }, []);
 
-  const testAPI = async () => {
-    const res = await axios.get("http://172.30.1.72:8080/user/default");
+  const getWeatherAPI = async () => {
+    const res = await axios.get(
+      "http://172.30.1.72:8080/weather/get-coordinate"
+    );
     console.log(res.data);
+    return res;
+  };
+  const createWeatherAPI = async (latitude, longitude) => {
+    const res = await axios.post(
+      "http://172.30.1.72:8080/weather/createWeather",
+      {
+        appId: appId.current,
+        latitude,
+        longitude,
+      }
+    );
+    // console.log(res.data);
   };
 
-  const deviceTest = async () => {
-    // const res = await DeviceInfo.getUniqueId().then((unique) => {
-    //   console.log(unique);
-    // });
-    let appName = DeviceInfo.getApplicationName();
-    console.log(appName);
+  // const testAPI = async () => {
+  //   const res = await axios.get("http://172.30.1.72:8080/user/default");
+  //   console.log(res.data);
+  // };
+
+  // const [appId, setAppId] = useState("");
+  const appId = useRef("");
+
+  const idTestAPI = async () => {
+    const value = await AsyncStorage.getItem("@storage_Id");
+
+    console.log("value", value);
+
+    if (value == null) {
+      const id = Date.now().toString();
+      storeData(id);
+      appId.current = id;
+      const response = await axios.post(
+        "http://172.30.1.72:8080/user/addUser",
+        {
+          macId: "E4:5F:01:D6:0F:91",
+          appId: id,
+        }
+      );
+    } else appId.current = value;
   };
 
-  // useEffect(() => {
-  //   deviceTest();
-  // }, []);
+  // 첫 실행시 Id 값 조회, 없으면 => date 저장하게하고, 있으면 => main으로 value를 props로 전달시켜주
+  // 있으면 서버랑 통신할 Id로 사용.
 
-  useEffect(() => {
-    testAPI();
-  }, []);
-  //status == 200 OK / 490 error
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("@storage_Id", value);
+    } catch (e) {
+      // saving error
+    }
+  };
 
   return (
     <View>
@@ -81,7 +146,7 @@ export default function Weather() {
             <ActivityIndicator
               color="#aaaaaa"
               size="large"
-              style={{ marginTop: 30 }}
+              style={{ marginTop: 50 }}
             />
           </View>
         ) : (
