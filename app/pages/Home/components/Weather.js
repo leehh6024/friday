@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Location from "expo-location";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import { Fontisto } from "@expo/vector-icons";
+import { Fontisto, Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -22,16 +22,16 @@ export default function Weather() {
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
 
-  const getCoordinate = async () => {
-    const res = await getWeatherAPI();
-    console.log(res.data);
-  };
+  // const getCoordinate = async () => {
+  //   const res = await getWeatherAPI();
+  //   console.log(res.data);
+  // };
 
-  useEffect(() => {
-    // AsyncStorage.clear(); // 사용금지
-    idTestAPI();
-    getCoordinate();
-  }, []);
+  // useEffect(() => {
+  //   // AsyncStorage.clear(); // 사용금지
+  //   idTestAPI();
+  //   getCoordinate();
+  // }, []);
 
   const getWeather = async () => {
     const { granted } = await Location.requestForegroundPermissionsAsync();
@@ -71,7 +71,7 @@ export default function Weather() {
       });
       const json = await response.json();
       setDays(json.daily);
-      createWeatherAPI(latitude, longitude);
+      // createWeatherAPI(latitude, longitude);
       // console.log(latitude, longitude);
       // console.log(typeof latitude, typeof longitude);
     }
@@ -81,24 +81,24 @@ export default function Weather() {
     getWeather();
   }, []);
 
-  const getWeatherAPI = async () => {
-    const res = await axios.get(
-      "http://172.30.1.72:8080/weather/get-coordinate"
-    );
-    console.log(res.data);
-    return res;
-  };
-  const createWeatherAPI = async (latitude, longitude) => {
-    const res = await axios.post(
-      "http://172.30.1.72:8080/weather/createWeather",
-      {
-        appId: appId.current,
-        latitude,
-        longitude,
-      }
-    );
-    // console.log(res.data);
-  };
+  // const getWeatherAPI = async () => {
+  //   const res = await axios.get(
+  //     "http://172.30.1.72:8080/weather/get-coordinate"
+  //   );
+  //   console.log(res.data);
+  //   return res;
+  // };
+  // const createWeatherAPI = async (latitude, longitude) => {
+  //   const res = await axios.post(
+  //     "http://172.30.1.72:8080/weather/createWeather",
+  //     {
+  //       appId: appId.current,
+  //       latitude,
+  //       longitude,
+  //     }
+  //   );
+  //   // console.log(res.data);
+  // };
 
   // const testAPI = async () => {
   //   const res = await axios.get("http://172.30.1.72:8080/user/default");
@@ -106,58 +106,59 @@ export default function Weather() {
   // };
 
   // const [appId, setAppId] = useState("");
-  const appId = useRef("");
+  // const appId = useRef("");
 
-  const idTestAPI = async () => {
-    const value = await AsyncStorage.getItem("@storage_Id");
+  // const idTestAPI = async () => {
+  //   const value = await AsyncStorage.getItem("@storage_Id");
 
-    console.log("value", value);
+  //   console.log("value", value);
 
-    if (value == null) {
-      const id = Date.now().toString();
-      storeData(id);
-      appId.current = id;
-      const response = await axios.post(
-        "http://172.30.1.72:8080/user/addUser",
-        {
-          macId: "E4:5F:01:D6:0F:91",
-          appId: id,
-        }
-      );
-    } else appId.current = value;
-  };
+  //   if (value == null) {
+  //     const id = Date.now().toString();
+  //     storeData(id);
+  //     appId.current = id;
+  //     const response = await axios.post(
+  //       "http://172.30.1.72:8080/user/addUser",
+  //       {
+  //         macId: "E4:5F:01:D6:0F:91",
+  //         appId: id,
+  //       }
+  //     );
+  //   } else appId.current = value;
+  // };
 
   // 첫 실행시 Id 값 조회, 없으면 => date 저장하게하고, 있으면 => main으로 value를 props로 전달시켜주
   // 있으면 서버랑 통신할 Id로 사용.
 
-  const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem("@storage_Id", value);
-    } catch (e) {
-      // saving error
-    }
-  };
+  // const storeData = async (value) => {
+  //   try {
+  //     await AsyncStorage.setItem("@storage_Id", value);
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // };
 
   return (
     <View>
       <View style={styles.weather}>
+        <Text style={styles.title}>오늘의 날씨</Text>
         {days?.length === 0 ? (
           <View>
             <ActivityIndicator
               color="#aaaaaa"
-              size="large"
+              size="medium"
               style={{ marginTop: 50 }}
             />
           </View>
         ) : (
           <View>
-            <Text style={styles.title}>오늘의 날씨</Text>
             <View style={styles.day}>
               <View>
                 <Fontisto
                   name={icons[days[0].weather[0].main]}
                   size="50"
-                  color="#aaaaaa"
+                  color="black"
+                  style={{ marginBottom: 20 }}
                 />
                 <Text style={styles.description}>
                   {days[0].weather[0].main}
@@ -166,8 +167,20 @@ export default function Weather() {
               <View>
                 <Text style={styles.city}>{city}</Text>
                 <Text style={styles.temp}>
-                  {parseFloat(days[0].temp.day).toFixed(1)}
+                  {parseFloat(days[0].temp.day).toFixed(1)}℃
                 </Text>
+                <View
+                  style={{
+                    ...styles.uvi,
+                    marginLeft: 14,
+                    flexDirection: "row",
+                  }}
+                >
+                  <Ionicons name="sunny-sharp" size={24} color="black" />
+                  <Text style={styles.uvi}>{days[0].uvi}</Text>
+                  <Ionicons name="water-sharp" size={24} color="black" />
+                  <Text style={styles.humidity}>{days[0].humidity}%</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -192,13 +205,14 @@ const styles = StyleSheet.create({
     justifyContent: "left",
     width: "100%",
   },
-  title: { color: "#A3C1C6", fontSize: 18, fontWeight: "700" },
-  city: { color: "#aaaaaa", marginLeft: 14, fontSize: 20 },
-  temp: { color: "#aaaaaa", marginLeft: 14, marginBottom: 20, fontSize: 28 },
-
-  description: {
-    color: "#aaaaaa",
-    marginTop: -10,
-    marginLeft: 10,
+  title: {
+    color: "#A3C1C6",
+    fontSize: 18,
+    fontWeight: "700",
   },
+  description: { color: "black", marginTop: -10, marginLeft: 10 },
+  city: { color: "black", marginLeft: 14, fontSize: 20 },
+  temp: { color: "black", marginLeft: 14, fontSize: 28 },
+  uvi: { color: "black", marginLeft: 4, alignItems: "center", fontSize: 12 },
+  humidity: { color: "black", marginLeft: 0, fontSize: 12 },
 });
