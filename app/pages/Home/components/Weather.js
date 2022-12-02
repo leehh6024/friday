@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import * as Location from "expo-location";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
+import axios from "axios";
+
+import { DeviceInfo } from "react-native-device-info";
+// or ES6+ destructured imports
+// import { getUniqueId, getManufacturer } from "react-native-device-info";
 
 const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
 
@@ -45,6 +50,29 @@ export default function Weather() {
   useEffect(() => {
     getWeather();
   }, []);
+
+  const testAPI = async () => {
+    const res = await axios.get("http://172.30.1.72:8080/user/default");
+    console.log(res.data);
+  };
+
+  const deviceTest = async () => {
+    // const res = await DeviceInfo.getUniqueId().then((unique) => {
+    //   console.log(unique);
+    // });
+    let appName = DeviceInfo.getApplicationName();
+    console.log(appName);
+  };
+
+  // useEffect(() => {
+  //   deviceTest();
+  // }, []);
+
+  useEffect(() => {
+    testAPI();
+  }, []);
+  //status == 200 OK / 490 error
+
   return (
     <View>
       <View style={styles.weather}>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 
 const TownCleanerAPI = axios.create({
   baseURL: "",
@@ -7,6 +8,16 @@ const TownCleanerAPI = axios.create({
     "Access-Control-Allow-Origin": "*",
   },
 });
+
+// baseURL: "http://43.200.121.200",
+
+const testAPI = async () => {
+  const res = await axios.get("http://172.30.1.72:8080/user/default");
+  console.log(res);
+};
+useEffect(() => {
+  testAPI();
+}, []);
 
 const TrafficAPI = axios.create({});
 const NewsAPI = axios.create({});
