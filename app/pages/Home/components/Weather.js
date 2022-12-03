@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 // import axios from "axios";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
+// const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
 
 const icons = {
   Clouds: "cloudy",
