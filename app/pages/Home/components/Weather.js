@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Location from "expo-location";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 // import axios from "axios";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
+const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
 
 const icons = {
   Clouds: "cloudy",
@@ -21,6 +22,8 @@ export default function Weather() {
   const [city, setCity] = useState("Loading...");
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
+
+  const navigation = useNavigation();
 
   // const getCoordinate = async () => {
   //   const res = await getWeatherAPI();
@@ -141,7 +144,12 @@ export default function Weather() {
   return (
     <View>
       <View style={styles.weather}>
-        <Text style={styles.title}>오늘의 날씨</Text>
+        <Text
+          style={styles.title}
+          onPress={() => navigation.navigate("WeatherDetails")}
+        >
+          오늘의 날씨
+        </Text>
         {days?.length === 0 ? (
           <View>
             <ActivityIndicator

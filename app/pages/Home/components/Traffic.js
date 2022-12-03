@@ -1,9 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Traffic() {
+  const navigation = useNavigation();
   return (
     <View style={styles.traffic}>
-      <Text style={styles.title}>버스 정보</Text>
+      <Text
+        style={styles.title}
+        onPress={() => navigation.navigate("TrafficDetails")}
+      >
+        버스 정보
+      </Text>
     </View>
   );
 }

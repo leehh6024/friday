@@ -1,9 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function News() {
+  const navigation = useNavigation();
   return (
     <View style={styles.news}>
-      <Text style={styles.title}>오늘 주요 뉴스</Text>
+      <Text
+        style={styles.title}
+        onPress={() => navigation.navigate("NewsDetails")}
+      >
+        오늘 주요 뉴스
+      </Text>
     </View>
   );
 }

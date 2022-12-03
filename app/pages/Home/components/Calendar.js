@@ -1,9 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Calendar() {
+  const navigation = useNavigation();
   return (
     <View style={styles.calendar}>
-      <Text style={styles.title}>오늘의 일정</Text>
+      <Text
+        style={styles.title}
+        onPress={() => navigation.navigate("CalendarDetails")}
+      >
+        오늘의 일정
+      </Text>
     </View>
   );
 }
