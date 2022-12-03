@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -8,13 +8,19 @@ export default function Header() {
 
   return (
     <View style={styles.container}>
-      <Ionicons name="settings-outline" size={24} color="black" />
-      <Button
-        title="go to Settings"
+      <Ionicons
+        name="settings-outline"
+        size={24}
+        color="black"
         onPress={() => navigation.navigate("Settings")}
       />
       <Text style={styles.appname}>FRIDAY,</Text>
-      <Ionicons name="help-outline" size={24} color="black" />
+      <Ionicons
+        name="help-outline"
+        size={24}
+        color="black"
+        onPress={() => navigation.navigate("Guide")}
+      />
     </View>
   );
 }
@@ -22,7 +28,7 @@ export default function Header() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 44,
-    paddingHorizontal: 24,
+    paddingHorizontal: 18,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

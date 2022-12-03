@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Settings() {
+export default function Guide() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Text>Settings Page</Text>
+      <Text>Guide Page</Text>
       <Button title="go to Home" onPress={() => navigation.navigate("Home")} />
     </View>
   );
