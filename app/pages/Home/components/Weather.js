@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Location from "expo-location";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import axios from "axios";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
+// const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
 
 const icons = {
   Clouds: "cloudy",
@@ -210,7 +210,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "700",
   },
-  description: { color: "black", marginTop: -10, marginLeft: 10 },
+  description: {
+    color: "black",
+    marginTop: -10,
+    marginLeft: 8,
+  },
   city: { color: "black", marginLeft: 14, fontSize: 20 },
   temp: { color: "black", marginLeft: 14, fontSize: 28 },
   uvi: { color: "black", marginLeft: 4, alignItems: "center", fontSize: 12 },
