@@ -4,9 +4,16 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 export default function Example() {
   return (
     <View style={styles.ex}>
-      <Text style={styles.exText}>FRIDAY,</Text>
-      <Text style={{ ...styles.exText, fontWeight: "400" }}>
-        오늘 날씨 알려줘
+      <Text style={styles.exText}>"FRIDAY, 오늘 날씨 알려줘"</Text>
+      <Text
+        style={{
+          ...styles.exText,
+          fontSize: 22,
+          fontWeight: "400",
+          flexDirection: "row",
+        }}
+      >
+        와 같이 말씀해보세요.
       </Text>
     </View>
   );

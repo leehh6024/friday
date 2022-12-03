@@ -145,9 +145,9 @@ export default function Weather() {
         {days?.length === 0 ? (
           <View>
             <ActivityIndicator
-              color="#aaaaaa"
-              size="medium"
-              style={{ marginTop: 50 }}
+              color="#A3C1C6"
+              size="small"
+              style={{ marginTop: 30 }}
             />
           </View>
         ) : (
