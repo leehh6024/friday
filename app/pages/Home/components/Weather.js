@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Location from "expo-location";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import { Fontisto, Ionicons } from "@expo/vector-icons";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ActivityIndicator,
+} from "react-native";
+import { Fontisto, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 // import axios from "axios";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -80,6 +86,10 @@ export default function Weather() {
     }
   };
 
+  const reloadWeather = () => {
+    getWeather();
+  };
+
   useEffect(() => {
     getWeather();
   }, []);
@@ -149,7 +159,14 @@ export default function Weather() {
           onPress={() => navigation.navigate("WeatherDetails")}
         >
           오늘의 날씨
+          <MaterialCommunityIcons
+            name="restart"
+            size={20}
+            color="#999999"
+            onPress={() => reloadWeather()}
+          />
         </Text>
+
         {days?.length === 0 ? (
           <View>
             <ActivityIndicator
@@ -222,11 +239,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "left",
     width: "100%",
+    // backgroundColor: "black",
   },
   title: {
     color: "#A3C1C6",
     fontSize: 18,
     fontWeight: "700",
+    alignItems: "center",
   },
   description: {
     color: "black",

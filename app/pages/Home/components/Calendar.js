@@ -11,6 +11,32 @@ export default function Calendar() {
       >
         오늘의 일정
       </Text>
+      <View style={styles.flexbox}>
+        <Text
+          style={styles.title}
+          onPress={() => navigation.navigate("CalendarDetails")}
+        >
+          오늘의 일정
+        </Text>
+        <Text
+          style={styles.title}
+          onPress={() => navigation.navigate("CalendarDetails")}
+        >
+          오늘의 일정
+        </Text>
+        <Text
+          style={styles.title}
+          onPress={() => navigation.navigate("CalendarDetails")}
+        >
+          오늘의 일정
+        </Text>
+        <Text
+          style={styles.title}
+          onPress={() => navigation.navigate("CalendarDetails")}
+        >
+          오늘의 일정
+        </Text>
+      </View>
     </View>
   );
 }
@@ -23,4 +49,12 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   title: { color: "#A3C1C6", fontSize: 18, fontWeight: "700" },
+
+  flexbox: {
+    marginTop: 8,
+    alignItems: "left",
+    justifyContent: "left",
+    width: "100%",
+    backgroundColor: "#B9CFDF",
+  },
 });
