@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 // import axios from "axios";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
+const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
 
 const icons = {
   Clouds: "cloudy",
@@ -49,7 +49,7 @@ export default function Weather() {
       setCity(location[0].city);
 
       const response = await fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&lang=kr&exclude=alerts&appid=${API_KEY}&units=metric`
       ).catch((error) => {
         console.log(error);
       });
@@ -68,7 +68,7 @@ export default function Weather() {
       setCity(location[0].city);
 
       const response = await fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&lang=kr&exclude=alerts&appid=${API_KEY}&units=metric`
       ).catch((error) => {
         console.log(error);
       });
@@ -168,8 +168,11 @@ export default function Weather() {
                   color="black"
                   style={{ marginBottom: 20 }}
                 />
-                <Text style={styles.description}>
+                {/* <Text style={styles.description}>
                   {days[0].weather[0].main}
+                </Text> */}
+                <Text style={styles.description}>
+                  {days[0].weather[0].description}
                 </Text>
               </View>
               <View>
@@ -190,6 +193,13 @@ export default function Weather() {
                   <Text style={styles.humidity}>{days[0].humidity}%</Text>
                 </View>
               </View>
+              <Text>
+                {`최고기온 :${parseFloat(days[0].temp.max).toFixed(1)}℃
+최저기온 :${parseFloat(days[0].temp.min).toFixed(1)}℃
+체감온도(아침) :${days[0].feels_like.day}℃
+체감온도(저녁) :${days[0].feels_like.night}℃
+                `}
+              </Text>
             </View>
           </View>
         )}
