@@ -9,9 +9,10 @@ export default function WeatherDetails() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}></View>
+      <View style={styles.header}>
+        <Text style={styles.title}>WEATHER</Text>
+      </View>
       <View style={styles.body}>
-        <Text>WeatherDetailsasdfsd</Text>
         <Text onPress={() => navigation.navigate("Home")}>go to Home</Text>
       </View>
       <View style={styles.footer}></View>
@@ -31,6 +32,8 @@ const styles = StyleSheet.create({
     // color: "#A3C1C6",
     color: "white",
     width: SCREEN_WIDTH,
+    alignItems: "center",
+    justifyContent: "center",
   },
   body: {
     flex: 2.0,
@@ -41,5 +44,11 @@ const styles = StyleSheet.create({
     flex: 0.3,
     backgroundColor: "#B9CFDF",
     width: SCREEN_WIDTH,
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: "800",
+    color: "#A3C1C6",
+    marginTop: 44,
   },
 });
