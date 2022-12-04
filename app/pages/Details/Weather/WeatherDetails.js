@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -11,10 +12,13 @@ export default function WeatherDetails() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>WEATHER</Text>
+        <Ionicons
+          name="ios-home-outline"
+          style={styles.home}
+          onPress={() => navigation.navigate("Home")}
+        />
       </View>
-      <View style={styles.body}>
-        <Text onPress={() => navigation.navigate("Home")}>go to Home</Text>
-      </View>
+      <View style={styles.body}></View>
       <View style={styles.footer}></View>
     </View>
   );
@@ -32,8 +36,10 @@ const styles = StyleSheet.create({
     // color: "#A3C1C6",
     color: "white",
     width: SCREEN_WIDTH,
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    paddingHorizontal: 10,
   },
   body: {
     flex: 2.0,
@@ -50,5 +56,12 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: "#A3C1C6",
     marginTop: 44,
+    marginRight: 70,
+  },
+  home: {
+    marginTop: 44,
+    fontSize: 30,
+    fontWeight: "800",
+    color: "#e5e5e5",
   },
 });
