@@ -49,23 +49,20 @@ export default function Splash() {
           style={styles.image}
           source={require("friday/app/assets/images/friday_splash.png")}
         />
-        <Text
-          style={styles.appName}
-          onPress={() => navigation.navigate("Home")}
-        >
-          FRIDAY,
-        </Text>
+        <Text style={styles.appName}>FRIDAY,</Text>
       </View>
       {id ? (
         <View style={styles.footer}>
-          <Text style={styles.text}>
+          <Text style={styles.text} onPress={() => navigation.navigate("Home")}>
             비서를 호출하는 중입니다. 잠시만 기다려주세요...
           </Text>
           <Button title="ID가 없으신가요 ?" onPress={() => setId(false)} />
         </View>
       ) : (
         <View style={styles.footer}>
-          <Text style={styles.text}>AI 스피커의 일련번호를 입력해주세요🤓</Text>
+          <Text style={styles.text} onPress={() => navigation.navigate("Home")}>
+            AI 스피커의 일련번호를 입력해주세요🤓
+          </Text>
           <TextInput
             style={styles.input}
             placeholder="- 표시를 포함해서 작성해주세요."
