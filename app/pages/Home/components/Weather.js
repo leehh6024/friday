@@ -80,9 +80,9 @@ export default function Weather() {
       });
       const json = await response.json();
       setDays(json.daily);
-      // createWeatherAPI(latitude, longitude);
-      // console.log(latitude, longitude);
-      // console.log(typeof latitude, typeof longitude);
+      createWeatherAPI(latitude, longitude);
+      console.log(latitude, longitude);
+      console.log(typeof latitude, typeof longitude);
     }
   };
 
@@ -93,7 +93,6 @@ export default function Weather() {
   useEffect(() => {
     getWeather();
   }, []);
-
   // const getWeatherAPI = async () => {
   //   const res = await axios.get(
   //     "http://172.30.1.72:8080/weather/get-coordinate"
@@ -118,7 +117,7 @@ export default function Weather() {
   //   console.log(res.data);
   // };
 
-  // const [appId, setAppId] = useState("");
+  // // const [appId, setAppId] = useState("");
   // const appId = useRef("");
 
   // const idTestAPI = async () => {
