@@ -24,7 +24,7 @@ export default function Splash() {
   // 서버에 해당 mac주소 전송 및 서버 내의 조회. 조회에 성공하면 Home 화면으로 이동.
   useEffect(() => {
     if (id == true) {
-      const goHome = setTimeout(() => {
+      const setHome = setTimeout(() => {
         navigation.navigate("Home");
       }, 3000);
     }
@@ -43,9 +43,10 @@ export default function Splash() {
         </Text>
         <Ionicons
           name="help-outline"
-          size={30}
-          color="#999999"
+          size={36}
+          color="#ededed"
           onPress={() => navigation.navigate("Guide")}
+          style={{ marginTop: -80 }}
         />
       </View>
       <View style={styles.body}>
@@ -85,12 +86,14 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
   },
   header: {
-    flex: 1,
+    flex: 0.8,
     width: SCREEN_WIDTH,
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    // backgroundColor: "white",
+    marginTop: 30,
   },
   body: {
     flex: 1.6,
@@ -101,16 +104,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  title: { fontSize: 32, color: "#999999", fontWeight: "600" },
+  title: { fontSize: 36, color: "#ededed", fontWeight: "900" },
 
   image: { height: 380 },
   appName: {
-    fontSize: 40,
-    color: "#999999",
-    fontWeight: "600",
+    marginBottom: 40,
+    fontSize: 56,
+    color: "#ededed",
+    fontWeight: "700",
   },
 
-  text: { marginTop: 40, color: "#999999" },
+  text: { marginTop: 40, color: "#ededed", fontWeight: "800", fontSize: 20 },
   input: {
     backgroundColor: "white",
     paddingVertical: 6,
