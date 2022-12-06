@@ -1,8 +1,7 @@
-import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
-import DateTimePicker from "@react-native-community/datetimepicker";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -35,22 +34,6 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
-  flexbox: {
-    backgroundColor: "#eeeeee",
-    borderRadius: 20,
-    height: 60,
-    paddingHorizontal: 20,
-    marginHorizontal: 6,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  function: {
-    color: "#A3C1C6",
-    fontWeight: "800",
-    fontSize: 24,
-  },
-
   container: {
     flex: 1,
     justifyContent: "center",
@@ -89,5 +72,20 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "800",
     color: "white",
+  },
+  flexbox: {
+    backgroundColor: "#eeeeee",
+    borderRadius: 20,
+    height: 60,
+    paddingHorizontal: 20,
+    marginHorizontal: 6,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  function: {
+    color: "#A3C1C6",
+    fontWeight: "800",
+    fontSize: 24,
   },
 });
