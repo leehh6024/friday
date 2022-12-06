@@ -14,17 +14,21 @@ import { useNavigation } from "@react-navigation/native";
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export default function Splash() {
-  const [id, setId] = useState(false);
-  const navigation = useNavigation();
+  const [id, setId] = useState(true);
 
-  // const setTimeout = () => {
-  //   navigation.navigate("Home", 1000);
-  // };
+  const navigation = useNavigation();
 
   // 유저가 앱을 키자마자 실행 될 함수 => 1. API에 appId 조회 요청
   // appId 있으면 => setTimeout(); 이때, 앱 화면은 기본 스플래시 창을 제공
   // appId 없으면 => <TextInput /> 에 AI스피커의 mac주소를 입력하고,
   // 서버에 해당 mac주소 전송 및 서버 내의 조회. 조회에 성공하면 Home 화면으로 이동.
+  useEffect(() => {
+    if (id == true) {
+      const goHome = setTimeout(() => {
+        navigation.navigate("Home");
+      }, 3000);
+    }
+  });
 
   {
     /* appId가 있는 유저라면 자동으로 홈화면으로 이동할 수 있게 설계 */
@@ -53,16 +57,14 @@ export default function Splash() {
       </View>
       {id ? (
         <View style={styles.footer}>
-          <Text style={styles.text} onPress={() => navigation.navigate("Home")}>
+          <Text style={styles.text}>
             비서를 호출하는 중입니다. 잠시만 기다려주세요...
           </Text>
           <Button title="ID가 없으신가요 ?" onPress={() => setId(false)} />
         </View>
       ) : (
         <View style={styles.footer}>
-          <Text style={styles.text} onPress={() => navigation.navigate("Home")}>
-            AI 스피커의 일련번호를 입력해주세요🤓
-          </Text>
+          <Text style={styles.text}>AI 스피커의 일련번호를 입력해주세요🤓</Text>
           <TextInput
             style={styles.input}
             placeholder="- 표시를 포함해서 작성해주세요."

@@ -80,9 +80,9 @@ export default function Weather() {
       });
       const json = await response.json();
       setDays(json.daily);
-      createWeatherAPI(latitude, longitude);
-      console.log(latitude, longitude);
-      console.log(typeof latitude, typeof longitude);
+      // createWeatherAPI(latitude, longitude);
+      // console.log(latitude, longitude);
+      // console.log(typeof latitude, typeof longitude);
     }
   };
 
