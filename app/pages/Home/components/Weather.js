@@ -231,6 +231,7 @@ const styles = StyleSheet.create({
     height: 120,
     paddingHorizontal: 30,
     paddingVertical: 5,
+    marginTop: 6,
   },
   day: {
     marginTop: 8,
@@ -242,7 +243,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#A3C1C6",
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: "700",
     alignItems: "center",
   },

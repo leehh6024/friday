@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 
-  text: { marginTop: 40, color: "white", fontWeight: "800", fontSize: 20 },
+  text: { marginTop: 40, color: "white", fontWeight: "800", fontSize: 16 },
   input: {
     backgroundColor: "white",
     paddingVertical: 6,
