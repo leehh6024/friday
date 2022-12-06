@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+// import Keyword from "./components/Keyword.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -22,6 +23,7 @@ export default function Settings() {
         <View style={styles.flexbox}>
           <Text style={styles.function}>{`키워드 설정`}</Text>
           <AntDesign name="rightcircleo" size={24} color="#A3C1C6" />
+          <Keyword />
         </View>
         <View style={{ ...styles.flexbox, marginTop: 6 }}>
           <Text style={styles.function}>{`센서 작동 시간 설정`}</Text>
