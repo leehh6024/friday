@@ -67,13 +67,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#eeeeee",
     borderRadius: 25,
     height: 160,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     paddingVertical: 5,
     marginTop: 6,
   },
-  day: {
-    marginTop: 8,
-  },
+  day: {},
   header: {},
   body: {
     width: "100%",
