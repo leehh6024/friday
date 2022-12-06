@@ -4,35 +4,27 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 export default function Example() {
   return (
     <View style={styles.ex}>
-      <Text style={styles.exText}>"FRIDAY, 오늘 날씨 알려줘"</Text>
+      <Text style={styles.exText}>{`"FRIDAY, 오늘 날씨 알려줘"`}</Text>
       <Text
-        style={{
-          ...styles.exText,
-          fontSize: 22,
-          fontWeight: "400",
-          flexDirection: "row",
-        }}
-      >
-        와 같이 말씀해보세요.
-      </Text>
+        style={{ ...styles.exText, fontSize: 20, fontWeight: "600" }}
+      >{`와 같이 말씀해보세요.`}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   ex: {
-    height: 100,
-    width: SCREEN_WIDTH,
     backgroundColor: "#eeeeee",
     borderRadius: 25,
-    alignItems: "center",
-    justifyContent: "center",
+    height: 80,
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    marginHorizontal: 6,
   },
   exText: {
     width: SCREEN_WIDTH,
     color: "#A3C1C6",
-    paddingHorizontal: 30,
     fontWeight: "800",
-    fontSize: "26",
+    fontSize: 26,
   },
 });

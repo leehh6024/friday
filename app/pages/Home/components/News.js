@@ -24,18 +24,6 @@ export default function News() {
         >
           주요뉴스 헤드라인
         </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("NewsDetails")}
-        >
-          주요뉴스 헤드라인
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("NewsDetails")}
-        >
-          주요뉴스 헤드라인
-        </Text>
       </View>
     </View>
   );
@@ -47,8 +35,10 @@ const styles = StyleSheet.create({
     height: 125,
     paddingHorizontal: 30,
     paddingVertical: 5,
+    marginTop: 6,
+    marginHorizontal: 6,
   },
-  title: { color: "#A3C1C6", fontSize: 18, fontWeight: "700" },
+  title: { color: "#A3C1C6", fontSize: 22, fontWeight: "700" },
   flexbox: {
     marginTop: 8,
     alignItems: "left",

@@ -1,75 +1,101 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 export default function Traffic() {
   const navigation = useNavigation();
+
+  // const trafficAPI = async () => {
+  //   const res = await fetch(
+  //     "http://apis.data.go.kr/6410000/busrouteservice/getBusRouteList?serviceKey=4gpM4FwLLV3c9v4j2o%2BALg3OJ7DDMEj7JQGIJWTyhQqaiZBtFkvbkuWuE2xLU6T9mBqWvLgqU%2FX7wN%2FBf950dw%3D%3D&keyword=1680"
+  //   ).catch((error) => {
+  //     console.log(error);
+  //   });
+  //   const json = await res.json();
+  //   console.log(json);
+  // };
+
+  // trafficAPI();
   return (
-    <View style={styles.traffic}>
-      <Text
-        style={styles.title}
-        onPress={() => navigation.navigate("TrafficDetails")}
-      >
-        교통 정보
-      </Text>
-      {/* map함수로 받아온 데이터 조회 */}
-      <View style={styles.flexbox}>
-        <View style={styles.flexItem1}>
-          <Text style={{ ...styles.bus, fontSize: 18 }}>버스 도착 정보</Text>
-          <Text style={{ ...styles.bus, fontSize: 17 }}>복우물마을</Text>
-          <Text style={styles.bus}>{`302       잠실 행     5분후`}</Text>
-          <Text style={styles.bus}>{`500-2   잠실 행     33분후`}</Text>
-          <Text style={styles.bus}>{`303       왕십리 행  15분후`}</Text>
-          <Text style={styles.bus}>{`G1690  갈매 행     55분후`}</Text>
+    <View style={{ flexDirection: "row", marginHorizontal: 6 }}>
+      <View style={styles.bus}>
+        <View style={styles.day}>
+          <View style={styles.header}>
+            <Text
+              style={styles.title}
+              onPress={() => navigation.navigate("TrafficDetails")}
+            >
+              버스 정보
+            </Text>
+          </View>
+          <View style={styles.body}>
+            <Text style={styles.station}>복우물마을입구</Text>
+          </View>
+          <View style={styles.footer}>
+            <Text style={styles.info}>{`302       잠실 행     5분후`}</Text>
+            <Text style={styles.info}>{`500-2   잠실 행     33분후`}</Text>
+            <Text style={styles.info}>{`303       왕십리 행  15분후`}</Text>
+            <Text style={styles.info}>{`G1690  갈매 행     55분후`}</Text>
+          </View>
         </View>
-        <View style={styles.flexItem2}>
-          <Text style={{ ...styles.way, fontSize: 18 }}>주변 도로 상황</Text>
-          <Text style={styles.way}>way info</Text>
-          <Text style={styles.way}>way info</Text>
-          <Text style={styles.way}>way info</Text>
-          <Text style={styles.way}>way info</Text>
+      </View>
+      <View style={styles.bus}>
+        <View style={styles.day}>
+          <View style={styles.header}>
+            <Text
+              style={{ ...styles.title, marginTop: 4 }}
+              onPress={() => navigation.navigate("TrafficDetails")}
+            ></Text>
+          </View>
+          <View style={styles.body}>
+            <Text style={styles.station}>가천대학교</Text>
+          </View>
+          <View style={styles.footer}>
+            <Text style={styles.info}>{`302       잠실 행     5분후`}</Text>
+            <Text style={styles.info}>{`500-2   잠실 행     33분후`}</Text>
+            <Text style={styles.info}>{`303       왕십리 행  15분후`}</Text>
+            <Text style={styles.info}>{`G1690  갈매 행     55분후`}</Text>
+          </View>
         </View>
       </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  traffic: {
+  bus: {
+    width: "50%",
     backgroundColor: "#eeeeee",
     borderRadius: 25,
     height: 160,
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingVertical: 5,
+    marginTop: 6,
   },
-  title: { color: "#A3C1C6", fontSize: 18, fontWeight: "700" },
-  flexbox: {
+  day: {
+    marginTop: 8,
+  },
+  header: {},
+  body: {
     width: "100%",
-    alignItems: "center",
-    justifyContent: "left",
     flexDirection: "row",
-  },
-  flexItem1: {
-    width: "50%",
+    justifyContent: "space-around",
     alignItems: "left",
-    justifyContent: "center",
-    backgroundColor: "#B9CFDF",
-    color: "white",
-    fontSize: 16,
-    fontWeight: "500",
+    marginTop: 4,
   },
-  flexItem2: {
-    width: "50%",
+  footer: {
+    width: "100%",
+    justifyContent: "left",
     alignItems: "left",
-    justifyContent: "center",
-    backgroundColor: "#B9CFDF",
+    marginTop: 6,
   },
-  bus: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "500",
+
+  title: {
+    color: "#A3C1C6",
+    fontSize: 22,
+    fontWeight: "700",
+    alignItems: "center",
+    paddingHorizontal: 20,
   },
-  way: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "500",
-  },
+  station: { fontSize: 18, fontWeight: "600" },
+  info: { fontSize: 16, fontWeight: "500", marginTop: 1 },
 });
