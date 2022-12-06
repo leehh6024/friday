@@ -41,13 +41,13 @@ export default function Splash() {
 금요일처럼
 느끼고 싶다면,`}
         </Text>
-        <Ionicons
+        {/* <Ionicons
           name="help-outline"
           size={36}
           color="white"
           onPress={() => navigation.navigate("Guide")}
           style={{ marginTop: -80 }}
-        />
+        /> */}
       </View>
       <View style={styles.body}>
         <Image
@@ -103,9 +103,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
   },
-
   title: { fontSize: 36, color: "white", fontWeight: "900" },
-
   image: { height: 380 },
   appName: {
     marginBottom: 40,
@@ -113,13 +111,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "700",
   },
-
   text: { marginTop: 40, color: "white", fontWeight: "800", fontSize: 16 },
   input: {
     backgroundColor: "white",
     paddingVertical: 6,
     paddingHorizontal: 20,
-    borderRadius: 30,
     marginTop: 4,
     fontSize: 14,
   },

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -18,13 +18,38 @@ export default function Settings() {
           onPress={() => navigation.navigate("Home")}
         />
       </View>
-      <View style={styles.body}></View>
+      <View style={styles.body}>
+        <View style={styles.flexbox}>
+          <Text style={styles.function}>{`키워드 설정`}</Text>
+          <AntDesign name="rightcircleo" size={24} color="#A3C1C6" />
+        </View>
+        <View style={{ ...styles.flexbox, marginTop: 6 }}>
+          <Text style={styles.function}>{`센서 작동 시간 설정`}</Text>
+          <AntDesign name="rightcircleo" size={24} color="#A3C1C6" />
+        </View>
+      </View>
       <View style={styles.footer}></View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  flexbox: {
+    backgroundColor: "#eeeeee",
+    borderRadius: 20,
+    height: 60,
+    paddingHorizontal: 20,
+    marginHorizontal: 6,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  function: {
+    color: "#A3C1C6",
+    fontWeight: "800",
+    fontSize: 24,
+  },
+
   container: {
     flex: 1,
     justifyContent: "center",
@@ -62,6 +87,6 @@ const styles = StyleSheet.create({
     marginTop: 44,
     fontSize: 30,
     fontWeight: "800",
-    color: "#e5e5e5",
+    color: "white",
   },
 });
