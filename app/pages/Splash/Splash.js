@@ -44,7 +44,7 @@ export default function Splash() {
         <Ionicons
           name="help-outline"
           size={36}
-          color="#ededed"
+          color="white"
           onPress={() => navigation.navigate("Guide")}
           style={{ marginTop: -80 }}
         />
@@ -104,17 +104,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  title: { fontSize: 36, color: "#ededed", fontWeight: "900" },
+  title: { fontSize: 36, color: "white", fontWeight: "900" },
 
   image: { height: 380 },
   appName: {
     marginBottom: 40,
     fontSize: 56,
-    color: "#ededed",
+    color: "white",
     fontWeight: "700",
   },
 
-  text: { marginTop: 40, color: "#ededed", fontWeight: "800", fontSize: 20 },
+  text: { marginTop: 40, color: "white", fontWeight: "800", fontSize: 20 },
   input: {
     backgroundColor: "white",
     paddingVertical: 6,
