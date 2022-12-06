@@ -232,6 +232,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 5,
     marginTop: 6,
+    marginHorizontal: 6,
   },
   day: {
     marginTop: 8,
