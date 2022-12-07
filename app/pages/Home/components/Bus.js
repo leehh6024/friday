@@ -1,21 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import axios from "axios";
 
 export default function Bus() {
   const navigation = useNavigation();
 
-  // const busAPI = async () => {
-  //   const res = await fetch(
-  //     "http://apis.data.go.kr/6410000/busrouteservice/getBusRouteList?serviceKey=4gpM4FwLLV3c9v4j2o%2BALg3OJ7DDMEj7JQGIJWTyhQqaiZBtFkvbkuWuE2xLU6T9mBqWvLgqU%2FX7wN%2FBf950dw%3D%3D&keyword=1680"
-  //   ).catch((error) => {
-  //     console.log(error);
-  //   });
-  //   const json = await res.json();
-  //   console.log(json);
-  // };
-
-  // busAPI();
   return (
     <View
       style={{
@@ -102,3 +91,16 @@ const styles = StyleSheet.create({
   station: { color: "#999999", fontSize: 17, fontWeight: "600", marginTop: 2 },
   info: { color: "#999999", fontSize: 15, fontWeight: "500", marginTop: 1 },
 });
+
+// const getBusListAPI = async () => {
+//   const res = await fetch(
+//     `http://172.16.239.139:8080/bus/busList?lineNumber=${302}`
+//   ).catch((error) => {
+//     console.log(error);
+//   });
+//   const json = await res.json();
+//   console.log(json);
+//   console.log(typeof json.body);
+//   console.log(Object.keys(json));
+//   console.log(res.data);
+// };

@@ -8,23 +8,8 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 
-import axios from "axios";
 export default function BottomBar() {
   const navigation = useNavigation();
-
-  //   const testAPI = async () => {
-  //     const res = await fetch("http://172.16.239.139:8080/user/api-test").catch(
-  //       (error) => {
-  //         console.log(error);
-  //       }
-  //     );
-  //     const json = await res.json();
-  //     console.log(json);
-  //     console.log(typeof json.body);
-  //     console.log(Object.keys(json));
-  //   };
-
-  //   testAPI();
 
   return (
     <View style={styles.container}>
