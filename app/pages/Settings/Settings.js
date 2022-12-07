@@ -28,6 +28,7 @@ export default function Settings() {
           onPress={() => navigation.navigate("Home")}
         />
       </View>
+
       <View style={styles.body}>
         <View style={styles.flexbox}>
           <Text style={styles.function}>{`키워드 설정`}</Text>
@@ -51,6 +52,8 @@ export default function Settings() {
             }}
           />
         </View>
+
+        {/* 키워드 모달창 컨테이너 */}
         <View style={styles.keyword}>
           <Modal
             animationType={"slide"}
@@ -60,6 +63,7 @@ export default function Settings() {
               console.log("Modal has been closed.");
             }}
           >
+            {/* 모달창 안에 들어가는 내용들 */}
             <View style={styles.modal}>
               <Text style={styles.text}>키워드 설정 모달</Text>
               <Button
@@ -71,6 +75,7 @@ export default function Settings() {
             </View>
           </Modal>
         </View>
+
         <View style={styles.timeSet}>
           <Modal
             animationType={"slide"}
@@ -92,6 +97,7 @@ export default function Settings() {
           </Modal>
         </View>
       </View>
+
       <View style={styles.footer}>
         <BottomBar />
       </View>
@@ -100,14 +106,15 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
+  keyword: { backgroundColor: "black" },
   modal: {
     flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#00ff00",
     padding: 100,
+    marginTop: 100,
   },
-  keyword: {},
   timeSet: {},
   container: {
     flex: 1,

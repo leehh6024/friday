@@ -9,7 +9,7 @@ export default function News() {
         style={styles.title}
         onPress={() => navigation.navigate("NewsDetails")}
       >
-        오늘의 주요 뉴스
+        주요 뉴스
       </Text>
       <View style={styles.flexbox}>
         <Text

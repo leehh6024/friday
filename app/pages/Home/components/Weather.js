@@ -159,7 +159,7 @@ export default function Weather() {
             style={styles.title}
             onPress={() => navigation.navigate("WeatherDetails")}
           >
-            오늘의 날씨
+            오늘 날씨
           </Text>
           <Ionicons
             name="reload-circle-outline"

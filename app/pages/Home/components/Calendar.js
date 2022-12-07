@@ -9,7 +9,7 @@ export default function Calendar() {
         style={styles.title}
         onPress={() => navigation.navigate("CalendarDetails")}
       >
-        오늘의 일정
+        오늘 일정
       </Text>
       <View style={styles.flexbox}>
         <Text

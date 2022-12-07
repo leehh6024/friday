@@ -19,7 +19,7 @@ export default function Bus() {
               style={styles.title}
               onPress={() => navigation.navigate("BusDetails")}
             >
-              버스 정보
+              버스
             </Text>
           </View>
           <View style={styles.body}>
