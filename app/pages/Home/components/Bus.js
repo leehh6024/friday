@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
-  station: { fontSize: 17, fontWeight: "600", marginTop: 2 },
-  info: { fontSize: 15, fontWeight: "500", marginTop: 1 },
+  station: { color: "#999999", fontSize: 17, fontWeight: "600", marginTop: 2 },
+  info: { color: "#999999", fontSize: 15, fontWeight: "500", marginTop: 1 },
 });
