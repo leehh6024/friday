@@ -100,6 +100,15 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
+  modal: {
+    flex: 0.5,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#00ff00",
+    padding: 100,
+  },
+  keyword: {},
+  timeSet: {},
   container: {
     flex: 1,
     justifyContent: "center",
@@ -153,11 +162,5 @@ const styles = StyleSheet.create({
     color: "#A3C1C6",
     fontWeight: "800",
     fontSize: 24,
-  },
-  modal: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: "#00ff00",
-    padding: 100,
   },
 });
