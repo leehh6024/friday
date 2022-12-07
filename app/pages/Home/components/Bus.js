@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
-export default function Traffic() {
+export default function Bus() {
   const navigation = useNavigation();
 
-  // const trafficAPI = async () => {
+  // const busAPI = async () => {
   //   const res = await fetch(
   //     "http://apis.data.go.kr/6410000/busrouteservice/getBusRouteList?serviceKey=4gpM4FwLLV3c9v4j2o%2BALg3OJ7DDMEj7JQGIJWTyhQqaiZBtFkvbkuWuE2xLU6T9mBqWvLgqU%2FX7wN%2FBf950dw%3D%3D&keyword=1680"
   //   ).catch((error) => {
@@ -15,7 +15,7 @@ export default function Traffic() {
   //   console.log(json);
   // };
 
-  // trafficAPI();
+  // busAPI();
   return (
     <View style={{ flexDirection: "row", marginHorizontal: 6 }}>
       <View style={styles.bus}>
@@ -23,7 +23,7 @@ export default function Traffic() {
           <View style={styles.header}>
             <Text
               style={styles.title}
-              onPress={() => navigation.navigate("TrafficDetails")}
+              onPress={() => navigation.navigate("BusDetails")}
             >
               버스 정보
             </Text>
@@ -44,7 +44,7 @@ export default function Traffic() {
           <View style={styles.header}>
             <Text
               style={{ ...styles.title, marginTop: 4 }}
-              onPress={() => navigation.navigate("TrafficDetails")}
+              onPress={() => navigation.navigate("BusDetails")}
             ></Text>
           </View>
           <View style={styles.body}>

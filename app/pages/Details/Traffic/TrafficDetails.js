@@ -2,16 +2,17 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import BottomBar from "../../Home/components/BottomBar.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
-export default function TrafficDetails() {
+export default function BusDetails() {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>TRAFFIC</Text>
+        <Text style={styles.title}>Bus</Text>
         <Ionicons
           name="ios-home-outline"
           style={styles.home}
@@ -19,7 +20,9 @@ export default function TrafficDetails() {
         />
       </View>
       <View style={styles.body}></View>
-      <View style={styles.footer}></View>
+      <View style={styles.footer}>
+        <BottomBar />
+      </View>
     </View>
   );
 }

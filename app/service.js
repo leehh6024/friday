@@ -9,7 +9,7 @@ useEffect(() => {
   testAPI();
 }, []);
 
-const TrafficAPI = axios.create({});
+const BusAPI = axios.create({});
 const NewsAPI = axios.create({});
 const CalendarAPI = axios.create({});
 const WeatherAPI = axios.create({});

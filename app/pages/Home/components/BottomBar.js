@@ -75,11 +75,11 @@ export default function BottomBar() {
           name="bus"
           size={32}
           color="#e5e5e5"
-          onPress={() => navigation.navigate("TrafficDetails")}
+          onPress={() => navigation.navigate("BusDetails")}
         />
         <Text
           style={{ color: "#555555", fontWeight: "600", marginTop: 4 }}
-          onPress={() => navigation.navigate("TrafficDetails")}
+          onPress={() => navigation.navigate("BusDetails")}
         >
           버스
         </Text>

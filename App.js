@@ -14,8 +14,8 @@ import Calendar from "./app/pages/Home/components/Calendar.js";
 import CalendarDetails from "./app/pages/Details/Calendar/CalendarDetails.js";
 import Weather from "./app/pages/Home/components/Weather.js";
 import WeatherDetails from "./app/pages/Details/Weather/WeatherDetails.js";
-import Traffic from "./app/pages/Home/components/Traffic.js";
-import TrafficDetails from "./app/pages/Details/Traffic/TrafficDetails.js";
+import Bus from "./app/pages/Home/components/Bus.js";
+import BusDetails from "./app/pages/Details/Bus/BusDetails.js";
 import News from "./app/pages/Home/components/News.js";
 import NewsDetails from "./app/pages/Details/News/NewsDetails.js";
 
@@ -38,8 +38,8 @@ export default function App() {
         <Stack.Screen name="CalendarDetails" component={CalendarDetails} />
         <Stack.Screen name="Weather" component={Weather} />
         <Stack.Screen name="WeatherDetails" component={WeatherDetails} />
-        <Stack.Screen name="Traffic" component={Traffic} />
-        <Stack.Screen name="TrafficDetails" component={TrafficDetails} />
+        <Stack.Screen name="Bus" component={Bus} />
+        <Stack.Screen name="BusDetails" component={BusDetails} />
         <Stack.Screen name="News" component={News} />
         <Stack.Screen name="NewsDetails" component={NewsDetails} />
       </Stack.Navigator>
