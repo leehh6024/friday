@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: "#A3C1C6",
     marginTop: 44,
-    marginRight: 70,
+    marginRight: 100,
   },
   home: {
     marginTop: 44,

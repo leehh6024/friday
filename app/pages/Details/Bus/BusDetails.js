@@ -12,7 +12,7 @@ export default function BusDetails() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Bus</Text>
+        <Text style={styles.title}>BUS</Text>
         <Ionicons
           name="ios-home-outline"
           style={styles.home}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: "#A3C1C6",
     marginTop: 44,
-    marginRight: 70,
+    marginRight: 116,
   },
   home: {
     marginTop: 44,
