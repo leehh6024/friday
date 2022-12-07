@@ -1,24 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-// import { Image } from "react-native";
+import BottomBar from "./components/BottomBar.js";
 
 export default function Footer() {
   return (
-    <View style={styles.container}>
-      {/* <Image source={require("~/assets/images/briefingBtn.png")} /> */}
+    <View>
+      <BottomBar />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  briefingBtn: {
-    backgroundColor: "white",
-    borderRadius: "100",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
