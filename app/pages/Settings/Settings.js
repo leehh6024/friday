@@ -66,11 +66,11 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
   },
   title: {
-    fontSize: 36,
+    fontSize: 44,
     fontWeight: "800",
     color: "#A3C1C6",
-    marginTop: 44,
-    marginRight: 70,
+    marginTop: 40,
+    marginRight: 54,
   },
   home: {
     marginTop: 44,

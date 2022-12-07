@@ -17,8 +17,13 @@ export default function Bus() {
 
   // busAPI();
   return (
-    <View style={{ flexDirection: "row", marginHorizontal: 6 }}>
-      <View style={styles.bus}>
+    <View
+      style={{
+        flexDirection: "row",
+        marginHorizontal: 6,
+      }}
+    >
+      <View style={{ ...styles.bus, marginRight: 4, width: "49%" }}>
         <View style={styles.day}>
           <View style={styles.header}>
             <Text
@@ -39,7 +44,7 @@ export default function Bus() {
           </View>
         </View>
       </View>
-      <View style={styles.bus}>
+      <View style={{ ...styles.bus }}>
         <View style={styles.day}>
           <View style={styles.header}>
             <Text
