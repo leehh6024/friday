@@ -15,7 +15,7 @@ export default function Settings() {
       <View style={styles.header}>
         <Text style={styles.title}>SETTINGS</Text>
         <Ionicons
-          name="ios-home-outline"
+          name="home"
           style={styles.home}
           onPress={() => navigation.navigate("Home")}
         />
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginRight: 54,
   },
   home: {
-    marginTop: 44,
+    marginTop: 40,
     fontSize: 30,
     fontWeight: "800",
     color: "white",

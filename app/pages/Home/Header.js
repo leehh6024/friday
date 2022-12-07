@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Header() {
@@ -9,16 +9,16 @@ export default function Header() {
   return (
     <View style={styles.container}>
       <Ionicons
-        name="settings-outline"
+        name="ios-settings"
         size={32}
-        color="#e2e2e2"
+        color="#e5e5e5"
         onPress={() => navigation.navigate("Settings")}
       />
       <Text style={styles.appname}>FRIDAY,</Text>
-      <Ionicons
-        name="help-outline"
+      <Feather
+        name="help-circle"
         size={36}
-        color="#e2e2e2"
+        color="#e5e5e5"
         onPress={() => navigation.navigate("Guide")}
       />
     </View>
@@ -28,7 +28,7 @@ export default function Header() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 40,
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

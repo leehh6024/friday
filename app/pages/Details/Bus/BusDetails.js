@@ -14,7 +14,7 @@ export default function BusDetails() {
       <View style={styles.header}>
         <Text style={styles.title}>BUS</Text>
         <Ionicons
-          name="ios-home-outline"
+          name="home"
           style={styles.home}
           onPress={() => navigation.navigate("Home")}
         />

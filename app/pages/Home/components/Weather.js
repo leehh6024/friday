@@ -191,9 +191,9 @@ export default function Weather() {
                   </Text>
                 </View>
                 <View>
-                  <Text style={styles.feels_like}>
-                    {`  체감온도
-아침: ${days[0].feels_like.day}º 
+                  <Text style={styles.feels_like}>{`  체감온도`}</Text>
+                  <Text style={{ ...styles.feels_like, marginTop: 10 }}>
+                    {`아침: ${days[0].feels_like.day}º
 저녁: ${days[0].feels_like.night}º`}
                   </Text>
                 </View>
@@ -245,24 +245,23 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#A3C1C6",
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "700",
     alignItems: "center",
     paddingHorizontal: 10,
   },
 
-  city: { color: "black", fontSize: 18, fontWeight: "600", marginTop: -1 },
-  temp: { color: "black", fontSize: 18, fontWeight: "600", marginTop: 10 },
+  city: { color: "black", fontSize: 20, fontWeight: "600", marginTop: -1 },
+  temp: { color: "black", fontSize: 30, fontWeight: "600", marginTop: 4 },
   feels_like: {
     justifyContent: "center",
     alignItems: "center",
     color: "black",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "600",
-    marginTop: -10,
   },
-  uvi: { color: "black", fontSize: 18, fontWeight: "600" },
-  humidity: { color: "black", fontSize: 18, fontWeight: "600" },
+  uvi: { color: "black", fontSize: 16, fontWeight: "600" },
+  humidity: { color: "black", fontSize: 16, fontWeight: "600" },
 
   uviBox: { justifyContent: "center", alignItems: "center", marginRight: 10 },
   humidityBox: {},

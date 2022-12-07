@@ -14,7 +14,7 @@ export default function WeatherDetails() {
       <View style={styles.header}>
         <Text style={styles.title}>WEATHER</Text>
         <Ionicons
-          name="ios-home-outline"
+          name="home"
           style={styles.home}
           onPress={() => navigation.navigate("Home")}
         />

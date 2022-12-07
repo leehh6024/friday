@@ -94,11 +94,11 @@ const styles = StyleSheet.create({
 
   title: {
     color: "#A3C1C6",
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "700",
     alignItems: "center",
     paddingHorizontal: 20,
   },
-  station: { fontSize: 18, fontWeight: "600" },
-  info: { fontSize: 16, fontWeight: "500", marginTop: 1 },
+  station: { fontSize: 17, fontWeight: "600", marginTop: 2 },
+  info: { fontSize: 15, fontWeight: "500", marginTop: 1 },
 });

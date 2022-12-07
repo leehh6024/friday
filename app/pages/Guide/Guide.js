@@ -14,7 +14,7 @@ export default function Guide() {
       <View style={styles.header}>
         <Text style={styles.title}>GUIDE</Text>
         <Ionicons
-          name="ios-home-outline"
+          name="home"
           style={styles.home}
           onPress={() => navigation.navigate("Home")}
         />
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     marginRight: 85,
   },
   home: {
-    marginTop: 44,
+    marginTop: 40,
     fontSize: 30,
     fontWeight: "800",
     color: "#e5e5e5",

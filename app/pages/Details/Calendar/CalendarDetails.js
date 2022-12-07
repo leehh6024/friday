@@ -14,7 +14,7 @@ export default function CalendarDetails() {
       <View style={styles.header}>
         <Text style={styles.title}>CALENDAR</Text>
         <Ionicons
-          name="ios-home-outline"
+          name="home"
           style={styles.home}
           onPress={() => navigation.navigate("Home")}
         />

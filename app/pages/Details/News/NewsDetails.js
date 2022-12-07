@@ -14,7 +14,7 @@ export default function NewsDetails() {
       <View style={styles.header}>
         <Text style={styles.title}>NEWS</Text>
         <Ionicons
-          name="ios-home-outline"
+          name="home"
           style={styles.home}
           onPress={() => navigation.navigate("Home")}
         />

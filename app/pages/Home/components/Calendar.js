@@ -9,15 +9,9 @@ export default function Calendar() {
         style={styles.title}
         onPress={() => navigation.navigate("CalendarDetails")}
       >
-        __일 일정
+        오늘의 일정
       </Text>
       <View style={styles.flexbox}>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
         <Text
           style={styles.title}
           onPress={() => navigation.navigate("CalendarDetails")}
@@ -44,7 +38,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     marginHorizontal: 6,
   },
-  title: { color: "#A3C1C6", fontSize: 22, fontWeight: "700" },
+  title: { color: "#A3C1C6", fontSize: 20, fontWeight: "700" },
 
   flexbox: {
     marginTop: 8,

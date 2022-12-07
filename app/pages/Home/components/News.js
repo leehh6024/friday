@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     marginHorizontal: 6,
   },
-  title: { color: "#A3C1C6", fontSize: 22, fontWeight: "700" },
+  title: { color: "#A3C1C6", fontSize: 20, fontWeight: "700" },
   flexbox: {
     marginTop: 8,
     alignItems: "left",
