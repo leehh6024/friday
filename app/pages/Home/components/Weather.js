@@ -177,45 +177,45 @@ export default function Weather() {
           </View>
         ) : (
           <View>
-            <View style={styles.day}>
-              <View>
+            <View style={styles.container}>
+              <View style={styles.flexbox1}>
                 <Fontisto
-                  name={icons[days[4].weather[0].main]}
-                  size="40"
+                  name={icons[days[0].weather[0].main]}
+                  size="50"
                   color="black"
-                  style={{ marginBottom: 20 }}
                 />
-                {/* <Text style={styles.description}>
-                  {days[0].weather[0].main}
-                </Text> */}
-                <Text style={styles.description}>
-                  {days[4].weather[0].description}
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.city}>{city}</Text>
-                <Text style={styles.temp}>
-                  {parseFloat(days[4].temp.day).toFixed(1)}℃
-                </Text>
-                <View
-                  style={{
-                    ...styles.uvi,
-                    marginLeft: 14,
-                    flexDirection: "row",
-                  }}
-                >
-                  <Ionicons name="sunny-sharp" size={24} color="black" />
-                  <Text style={styles.uvi}>{days[0].uvi}</Text>
-                  <Ionicons name="water-sharp" size={24} color="black" />
-                  <Text style={styles.humidity}>{days[0].humidity}%</Text>
+                <View>
+                  <Text style={styles.city}>{city}</Text>
+                  <Text style={styles.temp}>
+                    {parseFloat(days[0].temp.day).toFixed(1)}º
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.feels_like}>
+                    {`  체감온도
+아침: ${days[0].feels_like.day}º 
+저녁: ${days[0].feels_like.night}º`}
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={styles.uviBox}>
+                    <Text style={styles.uvi}>자외선</Text>
+                    <Ionicons name="sunny-sharp" size={28} color="black" />
+                    <Text style={styles.uvi}>
+                      {parseFloat(days[0].uvi).toFixed(1)}
+                    </Text>
+                  </View>
+                  <View style={styles.humidityBox}>
+                    <Text style={styles.uvi}>습도</Text>
+                    <Ionicons name="water-sharp" size={28} color="black" />
+                    <Text style={styles.humidity}>{days[0].humidity}%</Text>
+                  </View>
                 </View>
               </View>
-              <Text>
-                {`최고기온 :${parseFloat(days[0].temp.max).toFixed(1)}℃
-최저기온 :${parseFloat(days[0].temp.min).toFixed(1)}℃
-체감온도(아침) :${days[0].feels_like.day}℃
-체감온도(저녁) :${days[0].feels_like.night}℃
-                `}
+            </View>
+            <View style={styles.flexbox2}>
+              <Text style={styles.description}>
+                {days[0].weather[0].description}
               </Text>
             </View>
           </View>
@@ -226,36 +226,50 @@ export default function Weather() {
 }
 
 const styles = StyleSheet.create({
+  container: {},
+  flexbox1: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  flexbox2: { flexDirection: "row", paddingHorizontal: 4 },
+
   weather: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
     height: 120,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     paddingVertical: 5,
     marginTop: 6,
     marginHorizontal: 6,
-  },
-  day: {
-    marginTop: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "left",
-    width: "100%",
-    // backgroundColor: "black",
   },
   title: {
     color: "#A3C1C6",
     fontSize: 22,
     fontWeight: "700",
     alignItems: "center",
+    paddingHorizontal: 10,
   },
+
+  city: { color: "black", fontSize: 18, fontWeight: "600", marginTop: -1 },
+  temp: { color: "black", fontSize: 18, fontWeight: "600", marginTop: 10 },
+  feels_like: {
+    justifyContent: "center",
+    alignItems: "center",
+    color: "black",
+    fontSize: 18,
+    fontWeight: "600",
+    marginTop: -10,
+  },
+  uvi: { color: "black", fontSize: 18, fontWeight: "600" },
+  humidity: { color: "black", fontSize: 18, fontWeight: "600" },
+
+  uviBox: { justifyContent: "center", alignItems: "center", marginRight: 10 },
+  humidityBox: {},
+
   description: {
     color: "black",
-    marginTop: -10,
-    marginLeft: 8,
+    fontSize: 16,
+    fontWeight: "600",
   },
-  city: { color: "black", marginLeft: 14, fontSize: 20 },
-  temp: { color: "black", marginLeft: 14, fontSize: 28 },
-  uvi: { color: "black", marginLeft: 4, alignItems: "center", fontSize: 12 },
-  humidity: { color: "black", marginLeft: 0, fontSize: 12 },
 });
