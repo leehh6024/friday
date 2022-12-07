@@ -154,18 +154,20 @@ export default function Weather() {
   return (
     <View>
       <View style={styles.weather}>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("WeatherDetails")}
-        >
-          오늘의 날씨
-          <MaterialCommunityIcons
-            name="restart"
-            size={20}
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text
+            style={styles.title}
+            onPress={() => navigation.navigate("WeatherDetails")}
+          >
+            오늘의 날씨
+          </Text>
+          <Ionicons
+            name="reload-circle-outline"
+            size={16}
             color="#999999"
             onPress={() => reloadWeather()}
           />
-        </Text>
+        </View>
 
         {days?.length === 0 ? (
           <View>
