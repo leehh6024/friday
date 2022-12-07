@@ -23,7 +23,7 @@ export default function Settings() {
         <View style={styles.flexbox}>
           <Text style={styles.function}>{`키워드 설정`}</Text>
           <AntDesign name="rightcircleo" size={24} color="#A3C1C6" />
-          <Keyword />
+          {/* <Keyword /> */}
         </View>
         <View style={{ ...styles.flexbox, marginTop: 6 }}>
           <Text style={styles.function}>{`센서 작동 시간 설정`}</Text>

@@ -26,7 +26,7 @@ export default function Splash() {
     if (id == true) {
       const setHome = setTimeout(() => {
         navigation.navigate("Home");
-      }, 3000);
+      }, 1000);
     }
   });
 

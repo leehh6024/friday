@@ -93,6 +93,7 @@ export default function Weather() {
   useEffect(() => {
     getWeather();
   }, []);
+
   // const getWeatherAPI = async () => {
   //   const res = await axios.get(
   //     "http://172.30.1.72:8080/weather/get-coordinate"
@@ -179,8 +180,8 @@ export default function Weather() {
             <View style={styles.day}>
               <View>
                 <Fontisto
-                  name={icons[days[0].weather[0].main]}
-                  size="50"
+                  name={icons[days[4].weather[0].main]}
+                  size="40"
                   color="black"
                   style={{ marginBottom: 20 }}
                 />
@@ -188,13 +189,13 @@ export default function Weather() {
                   {days[0].weather[0].main}
                 </Text> */}
                 <Text style={styles.description}>
-                  {days[0].weather[0].description}
+                  {days[4].weather[0].description}
                 </Text>
               </View>
               <View>
                 <Text style={styles.city}>{city}</Text>
                 <Text style={styles.temp}>
-                  {parseFloat(days[0].temp.day).toFixed(1)}℃
+                  {parseFloat(days[4].temp.day).toFixed(1)}℃
                 </Text>
                 <View
                   style={{
