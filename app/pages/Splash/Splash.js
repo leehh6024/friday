@@ -63,9 +63,6 @@ export default function Splash() {
     }
   });
 
-  {
-    /* appId가 있는 유저라면 자동으로 홈화면으로 이동할 수 있게 설계 */
-  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
