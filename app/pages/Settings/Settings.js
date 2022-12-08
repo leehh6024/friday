@@ -3,10 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Dimensions,
   Modal,
   Button,
+  SafeAreaView,
 } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import BottomBar from "../Home/components/BottomBar.js";
@@ -17,6 +20,18 @@ export default function Settings() {
   const navigation = useNavigation();
   const [showModalKeyword, setShowModalKeyword] = useState(false);
   const [showModalTime, setShowModalTime] = useState(false);
+
+  const [category, setCategory] = useState([calendar, weather, bus, news]);
+  const [calendar, setCalendar] = useState([
+    "오늘 일정 알려줘",
+    "오늘 할 일",
+    "스케줄",
+    "나 오늘 뭐해",
+    "오늘 할 일 알려줘",
+  ]);
+  const [weather, setWeather] = useState([]);
+  const [bus, setBus] = useState([]);
+  const [news, setNews] = useState([]);
 
   return (
     <View style={styles.container}>
@@ -52,11 +67,11 @@ export default function Settings() {
             }}
           />
         </View>
-
-        {/* 키워드 모달창 컨테이너 */}
-        <View style={styles.keyword}>
+        <SafeAreaView style={{ flex: 1 }}>
+          {/* 키워드 모달창 컨테이너 */}
           <Modal
-            animationType={"slide"}
+            // style={styles.modal}
+            animationType={"fade"}
             transparent={false}
             visible={showModalKeyword}
             onRequestClose={() => {
@@ -64,18 +79,45 @@ export default function Settings() {
             }}
           >
             {/* 모달창 안에 들어가는 내용들 */}
-            <View style={styles.modal}>
-              <Text style={styles.text}>키워드 설정 모달</Text>
-              <Button
-                title="Click To Close Modal"
-                onPress={() => {
-                  setShowModalKeyword(!showModalKeyword);
-                }}
-              />
+            <View style={styles.keyword}>
+              <View style={styles.keywordContainer}>
+                <View style={styles.category}>
+                  <Text style={styles.categoryText}>일정</Text>
+                  <Text style={styles.categoryText}>날씨</Text>
+                  <Text style={styles.categoryText}>버스</Text>
+                  <Text style={styles.categoryText}>뉴스</Text>
+                </View>
+                <View style={styles.contents}>
+                  {calendar && (
+                    <ScrollView style={{ marginTop: 20 }}>
+                      {calendar.map((calendars, index) => {
+                        return (
+                          <View>
+                            <Text style={styles.contentText}>{calendars}</Text>
+                          </View>
+                        );
+                      })}
+                    </ScrollView>
+                  )}
+                </View>
+                <AntDesign
+                  style={{
+                    ...styles.keywordContainer,
+                    marginTop: -46,
+                    marginRight: 4,
+                    height: 40,
+                  }}
+                  name="closecircle"
+                  size={26}
+                  color="#666666"
+                  onPress={() => {
+                    setShowModalKeyword(!showModalKeyword);
+                  }}
+                />
+              </View>
             </View>
           </Modal>
-        </View>
-
+        </SafeAreaView>
         <View style={styles.timeSet}>
           <Modal
             animationType={"slide"}
@@ -106,15 +148,45 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
-  keyword: { backgroundColor: "black" },
-  modal: {
-    flex: 0.5,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#00ff00",
-    padding: 100,
-    marginTop: 100,
+  keyword: {
+    flex: 0.6,
+    backgroundColor: "#B9CFDF",
+    borderRadius: 10,
+    marginTop: 200,
+    marginHorizontal: 40,
   },
+  keywordContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 50,
+    height: 280,
+  },
+  category: {
+    width: "24%",
+    borderRightWidth: 2,
+    borderColor: "#999999",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  categoryText: {
+    marginBottom: 6,
+    fontSize: 18,
+    color: "#666666",
+    fontWeight: "700",
+  },
+  contents: {
+    width: "60%",
+    justifyContent: "space-evenly",
+    alignItems: "left",
+    paddingHorizontal: 10,
+  },
+  contentText: {
+    marginBottom: 6,
+    fontSize: 18,
+    color: "#666666",
+    fontWeight: "700",
+  },
+
   timeSet: {},
   container: {
     flex: 1,
