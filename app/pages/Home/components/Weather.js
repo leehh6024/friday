@@ -65,8 +65,12 @@ export default function Weather() {
   useEffect(() => {
     weatherAPI();
     // AsyncStorage.clear(); // 사용금지
-    idTestAPI();
+    getAppId();
   }, []);
+
+  const getAppId = async () => {
+    appId.current = await AsyncStorage.getItem("@storage_Id");
+  };
 
   const reloadWeather = () => {
     setLocation();
@@ -90,25 +94,25 @@ export default function Weather() {
     }
   };
 
-  const idTestAPI = async () => {
-    const value = await AsyncStorage.getItem("@storage_Id");
+  // const idTestAPI = async () => {
+  //   const value = await AsyncStorage.getItem("@storage_Id");
 
-    console.log("value", value);
-    if (value == null) {
-      const id = Date.now().toString();
+  //   console.log("value", value);
+  //   if (value == null) {
+  //     const id = Date.now().toString();
 
-      appId.current = id;
-      const response = await axios.post(BASE_IP + "/user/addUser", {
-        macId: "E4:5F:01:D6:0F:91",
-        appId: id,
-      });
-      console.log("idTest : ", response.data.status);
-      storeData(id);
-    } else {
-      console.log("appId is OK");
-      appId.current = value;
-    }
-  };
+  //     appId.current = id;
+  //     const response = await axios.post(BASE_IP + "/user/addUser", {
+  //       macId: "E4:5F:01:D6:0F:91",
+  //       appId: id,
+  //     });
+  //     console.log("idTest : ", response.data.status);
+  //     storeData(id);
+  //   } else {
+  //     console.log("appId is OK");
+  //     appId.current = value;
+  //   }
+  // };
 
   return (
     <View>
