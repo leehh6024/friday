@@ -9,10 +9,15 @@ import {
   Button,
   SafeAreaView,
 } from "react-native";
-
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+
 import BottomBar from "../Home/components/BottomBar.js";
+import Tab from "./Tab.js";
+import CalendarTab from "./components/CalendarTab.js";
+import WeatherTab from "./components/WeatherTab.js";
+import BusTab from "./components/BusTab.js";
+import NewsTab from "./components/NewsTab.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -21,17 +26,7 @@ export default function Settings() {
   const [showModalKeyword, setShowModalKeyword] = useState(false);
   const [showModalTime, setShowModalTime] = useState(false);
 
-  const [category, setCategory] = useState([calendar, weather, bus, news]);
-  const [calendar, setCalendar] = useState([
-    "오늘 일정 알려줘",
-    "오늘 할 일",
-    "스케줄",
-    "나 오늘 뭐해",
-    "오늘 할 일 알려줘",
-  ]);
-  const [weather, setWeather] = useState([]);
-  const [bus, setBus] = useState([]);
-  const [news, setNews] = useState([]);
+  const [activeTab, setActiveTab] = useState("C");
 
   return (
     <View style={styles.container}>
@@ -71,7 +66,8 @@ export default function Settings() {
           {/* 키워드 모달창 컨테이너 */}
           <Modal
             // style={styles.modal}
-            animationType={"fade"}
+            // animationType={"fade"}
+            animationType={"slide"}
             transparent={false}
             visible={showModalKeyword}
             onRequestClose={() => {
@@ -82,23 +78,15 @@ export default function Settings() {
             <View style={styles.keyword}>
               <View style={styles.keywordContainer}>
                 <View style={styles.category}>
-                  <Text style={styles.categoryText}>일정</Text>
-                  <Text style={styles.categoryText}>날씨</Text>
-                  <Text style={styles.categoryText}>버스</Text>
-                  <Text style={styles.categoryText}>뉴스</Text>
+                  <Tab activeTab={activeTab} setActiveTab={setActiveTab} />
                 </View>
                 <View style={styles.contents}>
-                  {calendar && (
-                    <ScrollView style={{ marginTop: 20 }}>
-                      {calendar.map((calendars, index) => {
-                        return (
-                          <View>
-                            <Text style={styles.contentText}>{calendars}</Text>
-                          </View>
-                        );
-                      })}
-                    </ScrollView>
-                  )}
+                  <ScrollView style={{ marginTop: 20 }}>
+                    {activeTab == "C" ? <CalendarTab /> : null}
+                    {activeTab == "W" ? <WeatherTab /> : null}
+                    {activeTab == "B" ? <BusTab /> : null}
+                    {activeTab == "N" ? <NewsTab /> : null}
+                  </ScrollView>
                 </View>
                 <AntDesign
                   style={{

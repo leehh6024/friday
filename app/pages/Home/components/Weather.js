@@ -7,7 +7,7 @@ import {
   Button,
   ActivityIndicator,
 } from "react-native";
-import { Fontisto, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 // import axios from "axios";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
