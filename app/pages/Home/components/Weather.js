@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-// import axios from "axios";
+import axios from "axios";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_KEY = "ef3118cc42b4ccfbf7cc900504e6b835";
@@ -31,6 +31,14 @@ export default function Weather() {
 
   const navigation = useNavigation();
 
+  const weatherAPI = async () => {
+    const res = await axios.get(
+      "http://172.16.239.139:8080/weather/getWeather?appId=1234"
+    );
+    console.log(JSON.parse(res.data.res).daily);
+    console.log(typeof JSON.parse(res.data.res));
+  };
+  weatherAPI();
   // const getCoordinate = async () => {
   //   const res = await getWeatherAPI();
   //   console.log(res.data);
