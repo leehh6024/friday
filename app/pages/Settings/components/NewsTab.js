@@ -11,7 +11,9 @@ export default function NewsTab() {
   ]);
   return (
     <View>
-      <Text style={styles.contentText}>{news}</Text>
+      {news.map((newses, index) => {
+        return <Text style={styles.contentText}>{newses}</Text>;
+      })}
     </View>
   );
 }

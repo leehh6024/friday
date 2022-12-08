@@ -62,50 +62,50 @@ export default function Settings() {
             }}
           />
         </View>
-        <SafeAreaView style={{ flex: 1 }}>
+        <View>
           {/* 키워드 모달창 컨테이너 */}
           <Modal
-            // style={styles.modal}
-            // animationType={"fade"}
-            animationType={"slide"}
-            transparent={false}
+            animationType={"fade"}
+            transparent={true}
             visible={showModalKeyword}
             onRequestClose={() => {
               console.log("Modal has been closed.");
             }}
           >
             {/* 모달창 안에 들어가는 내용들 */}
-            <View style={styles.keyword}>
-              <View style={styles.keywordContainer}>
-                <View style={styles.category}>
-                  <Tab activeTab={activeTab} setActiveTab={setActiveTab} />
+            <View style={styles.modalContainer}>
+              <View style={styles.keyword}>
+                <View style={styles.keywordContainer}>
+                  <View style={styles.category}>
+                    <Tab activeTab={activeTab} setActiveTab={setActiveTab} />
+                  </View>
+                  <View style={styles.contents}>
+                    <ScrollView style={{ marginTop: 20 }}>
+                      {activeTab == "C" ? <CalendarTab /> : null}
+                      {activeTab == "W" ? <WeatherTab /> : null}
+                      {activeTab == "B" ? <BusTab /> : null}
+                      {activeTab == "N" ? <NewsTab /> : null}
+                    </ScrollView>
+                  </View>
+                  <AntDesign
+                    style={{
+                      ...styles.keywordContainer,
+                      marginTop: -46,
+                      marginRight: 4,
+                      height: 40,
+                    }}
+                    name="closecircle"
+                    size={26}
+                    color="#666666"
+                    onPress={() => {
+                      setShowModalKeyword(!showModalKeyword);
+                    }}
+                  />
                 </View>
-                <View style={styles.contents}>
-                  <ScrollView style={{ marginTop: 20 }}>
-                    {activeTab == "C" ? <CalendarTab /> : null}
-                    {activeTab == "W" ? <WeatherTab /> : null}
-                    {activeTab == "B" ? <BusTab /> : null}
-                    {activeTab == "N" ? <NewsTab /> : null}
-                  </ScrollView>
-                </View>
-                <AntDesign
-                  style={{
-                    ...styles.keywordContainer,
-                    marginTop: -46,
-                    marginRight: 4,
-                    height: 40,
-                  }}
-                  name="closecircle"
-                  size={26}
-                  color="#666666"
-                  onPress={() => {
-                    setShowModalKeyword(!showModalKeyword);
-                  }}
-                />
               </View>
             </View>
           </Modal>
-        </SafeAreaView>
+        </View>
         <View style={styles.timeSet}>
           <Modal
             animationType={"slide"}
@@ -136,6 +136,10 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
   keyword: {
     flex: 0.6,
     backgroundColor: "#B9CFDF",
@@ -156,23 +160,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  categoryText: {
-    marginBottom: 6,
-    fontSize: 18,
-    color: "#666666",
-    fontWeight: "700",
-  },
   contents: {
     width: "60%",
     justifyContent: "space-evenly",
     alignItems: "left",
     paddingHorizontal: 10,
-  },
-  contentText: {
-    marginBottom: 6,
-    fontSize: 18,
-    color: "#666666",
-    fontWeight: "700",
   },
 
   timeSet: {},
