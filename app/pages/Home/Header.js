@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   appname: {
     fontSize: 44,
     fontWeight: "800",
-    color: "#A3C1C6",
+    color: "#e5e5e5",
   },
   box: {
     justifyContent: "center",
