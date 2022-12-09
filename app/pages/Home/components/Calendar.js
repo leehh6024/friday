@@ -11,8 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { getAppId } from "../../../service";
 import axios from "axios";
-
-const BASE_IP = "http://172.16.239.139:8080";
+import { BASE_IP } from "../../../service";
 
 export default function Calendar() {
   const [appId, setAppId] = useState("");

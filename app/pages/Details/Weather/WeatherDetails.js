@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import BottomBar from "../../Home/components/BottomBar.js";
 
 import axios from "axios";
+import { BASE_IP } from "../../../service.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -19,8 +20,6 @@ const icons = {
   Drizzle: "rain",
   Thunderstorm: "lighting",
 };
-
-const BASE_IP = "http://172.16.239.139:8080";
 
 export default function WeatherDetails() {
   const [city, setCity] = useState("Loading...");

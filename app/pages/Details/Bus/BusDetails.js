@@ -12,11 +12,9 @@ import { Ionicons, FontAwesome5, Feather } from "@expo/vector-icons";
 
 import BottomBar from "../../Home/components/BottomBar.js";
 import axios from "axios";
-import { getAppId } from "../../../service.js";
+import { BASE_IP, getAppId } from "../../../service.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-
-const BASE_IP = "http://172.16.239.139:8080";
 
 export default function BusDetails() {
   const navigation = useNavigation();

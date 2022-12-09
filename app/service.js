@@ -2,6 +2,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React, { useEffect } from "react";
 
+export const getAppId = async (setter) => {
+  const value = await AsyncStorage.getItem("@storage_Id");
+  setter(value);
+};
+
+export const BASE_IP = "http://172.16.239.139:8080";
+
 // const testAPI = async () => {
 //   const res = await axios.get("http://172.30.1.72:8080/user/default");
 //   console.log(res);
@@ -15,10 +22,6 @@ import React, { useEffect } from "react";
 // const CalendarAPI = axios.create({});
 // const WeatherAPI = axios.create({});
 
-export const getAppId = async (setter) => {
-  const value = await AsyncStorage.getItem("@storage_Id");
-  setter(value);
-};
 // export const appId = AsyncStorage.getItem("@storage_Id");
 // const idTestAPI = async () => {
 //   const value = await AsyncStorage.getItem("@storage_Id");

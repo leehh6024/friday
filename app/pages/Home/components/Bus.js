@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { getAppId } from "../../../service";
-
-const BASE_IP = "http://172.16.239.139:8080";
+import { BASE_IP } from "../../../service";
 
 export default function Bus() {
   const [appId, setAppId] = useState("");

@@ -12,9 +12,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BASE_IP } from "../../service";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const BASE_IP = "http://172.16.239.139:8080";
 
 export default function Splash() {
   const [appId, setAppId] = useState("");

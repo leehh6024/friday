@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, ScrollView, Linking } from "react-native";
 import { Link, useNavigation } from "@react-navigation/native";
 import axios from "axios";
-
-const BASE_IP = "http://172.16.239.139:8080";
+import { BASE_IP } from "../../../service";
 
 export default function News() {
   const [news, setNews] = useState([]);

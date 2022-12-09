@@ -5,6 +5,7 @@ import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BASE_IP } from "../../../service";
 
 const icons = {
   Clouds: "cloudy",
@@ -15,7 +16,6 @@ const icons = {
   Drizzle: "rain",
   Thunderstorm: "lighting",
 };
-const BASE_IP = "http://172.16.239.139:8080";
 
 export default function Weather() {
   const [city, setCity] = useState("Loading...");
@@ -78,7 +78,7 @@ export default function Weather() {
   };
 
   const createWeatherAPI = async (latitude, longitude, city) => {
-    const res = await axios.post(BASE_IP + "/weather/createWeather", {
+    const res = await axios.post(`${BASE_IP} + "/weather/createWeather`, {
       appId: appId.current,
       latitude,
       longitude,
@@ -141,7 +141,7 @@ export default function Weather() {
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text
             style={styles.title}
-            onPress={() => AsyncStorage.clear()} // 사용금지
+            // onPress={() => AsyncStorage.clear()} // 사용금지
           >
             {`${days[0]?.dt.getMonth() + 1}월 ${days[0]?.dt.getDate()}일 ${
               date[days[0]?.dt.getDay()]
