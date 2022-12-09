@@ -141,7 +141,7 @@ export default function Weather() {
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text
             style={styles.title}
-            // onPress={() => AsyncStorage.clear()} // 사용금지
+            onPress={() => AsyncStorage.clear()} // 사용금지
           >
             {`${days[0]?.dt.getMonth() + 1}월 ${days[0]?.dt.getDate()}일 ${
               date[days[0]?.dt.getDay()]

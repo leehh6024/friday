@@ -1,10 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import { getAppId } from "../../../service";
+
+const BASE_IP = "http://172.16.239.139:8080";
 
 export default function Bus() {
+  const [appId, setAppId] = useState("");
   const navigation = useNavigation();
 
+  const [busStationName, setBusStationName] =
+    useState("등록된 정류소가 없습니다.");
+  const [busLineNumber, setBusLineNumber] = useState("");
+  const [busArrival, setBusArrival] = useState("");
+
+  const getBusStationInfo = async () => {
+    const res = await axios.post(`${BASE_IP}/bus/getBusStationInfo`);
+  };
+
+  const getBusArrival = async () => {
+    const res = await axios.get(`${BASE_IP}/bus/busArrival?appId=${appId}`);
+    const json = res.data;
+    console.log("BUS json data", json);
+  };
+
+  useEffect(() => {
+    getAppId(setAppId);
+  }, []);
+
+  useEffect(() => {
+    getBusArrival();
+  }, [appId]);
   return (
     <View
       style={{
