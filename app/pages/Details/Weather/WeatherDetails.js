@@ -19,7 +19,9 @@ export default function WeatherDetails() {
           onPress={() => navigation.navigate("Home")}
         />
       </View>
-      <View style={styles.body}></View>
+      <View style={styles.body}>
+        <View style={styles.weather}></View>
+      </View>
       <View style={styles.footer}>
         <BottomBar />
       </View>
@@ -66,5 +68,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "800",
     color: "#e5e5e5",
+  },
+  weather: {
+    backgroundColor: "#eeeeee",
+    borderRadius: 25,
+    height: 400,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    marginTop: 100,
+    marginHorizontal: 20,
   },
 });

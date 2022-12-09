@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     height: 120,
     paddingHorizontal: 20,
     paddingVertical: 5,
-    marginTop: 6,
+    marginTop: 10,
     marginHorizontal: 6,
   },
   title: {

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     height: 160,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    marginTop: 6,
+    marginTop: 10,
   },
   day: {},
   header: {},

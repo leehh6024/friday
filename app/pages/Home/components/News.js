@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
   news: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
-    height: 125,
+    height: 240,
     paddingHorizontal: 30,
     paddingVertical: 5,
-    marginTop: 6,
+    marginTop: 10,
     marginHorizontal: 6,
   },
   title: { color: "#A3C1C6", fontSize: 20, fontWeight: "700" },
