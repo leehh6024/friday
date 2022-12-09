@@ -87,12 +87,6 @@ export default function Calendar() {
         />
       </View>
       <ScrollView style={styles.flexbox}>
-        {/* <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text> */}
         {Object.keys(toDos).map((key, idx) => (
           <View
             key={idx}
@@ -100,18 +94,19 @@ export default function Calendar() {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
+              marginBottom: 4,
+              borderBottomWidth: 1,
+              borderBottomColor: "teal",
             }}
           >
-            <Text
-              style={styles.title}
-              onPress={() => navigation.navigate("CalendarDetails")}
-            >
+            <Text onPress={() => navigation.navigate("CalendarDetails")}>
               {toDos[key].text}
             </Text>
             <View>
               <TouchableOpacity onPress={() => deleteToDos(key)}>
                 <MaterialCommunityIcons
                   name="trash-can-outline"
+                  color="teal"
                   style={{ fontSize: 28 }}
                 />
               </TouchableOpacity>
@@ -144,6 +139,5 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     width: "100%",
-    backgroundColor: "#e0e0e0",
   },
 });
