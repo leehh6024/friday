@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import * as Location from "expo-location";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import * as Location from "expo-location";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
@@ -32,7 +32,8 @@ export default function Weather() {
       `${BASE_IP}/weather/getWeather?appId=${appId.current}`
     );
     const json = await JSON.parse(res.data.weatherInfo);
-    setDays(json.daily);
+    const convertData = convertUTCToTime(json.daily);
+    setDays(convertData);
     // console.log(json.daily);
     // console.log(typeof json.daily);
     // console.log(res.data.city);
@@ -94,6 +95,26 @@ export default function Weather() {
     }
   };
 
+  const convertUTCToTime = (weatherData) => {
+    const data = weatherData;
+    data.map((value) => {
+      const convertData = value;
+      convertData.dt = new Date(value.dt * 1000);
+      return convertData;
+    });
+    return data;
+  };
+
+  const date = [
+    "일요일",
+    "월요일",
+    "화요일",
+    "수요일",
+    "목요일",
+    "금요일",
+    "토요일",
+  ];
+
   // const idTestAPI = async () => {
   //   const value = await AsyncStorage.getItem("@storage_Id");
 
@@ -120,9 +141,11 @@ export default function Weather() {
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text
             style={styles.title}
-            onPress={() => AsyncStorage.clear()} // 사용금지
+            // onPress={() => AsyncStorage.clear()} // 사용금지
           >
-            오늘 날씨
+            {`${days[0]?.dt.getMonth() + 1}월 ${days[0]?.dt.getDate()}일 ${
+              date[days[0]?.dt.getDay()]
+            }`}
           </Text>
           <Ionicons
             name="reload-circle-outline"
@@ -212,7 +235,7 @@ const styles = StyleSheet.create({
   title: {
     color: "#A3C1C6",
     fontSize: 20,
-    fontWeight: "700",
+    fontWeight: "800",
     alignItems: "center",
     paddingHorizontal: 10,
   },
