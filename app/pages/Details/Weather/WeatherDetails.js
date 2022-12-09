@@ -132,7 +132,7 @@ export default function WeatherDetails() {
                       <Fontisto
                         name={icons[day.weather[0].main]}
                         size="50"
-                        color="#999999"
+                        color="#555555"
                       />
                       <View>
                         <Text style={styles.city}>{city}</Text>
@@ -153,7 +153,7 @@ export default function WeatherDetails() {
                           <Ionicons
                             name="sunny-sharp"
                             size={24}
-                            color="#999999"
+                            color="#555555"
                           />
                           <Text style={styles.uvi}>
                             {parseFloat(day.uvi).toFixed(1)}
@@ -164,7 +164,7 @@ export default function WeatherDetails() {
                           <Ionicons
                             name="water-sharp"
                             size={24}
-                            color="#999999"
+                            color="#555555"
                           />
                           <Text style={styles.humidity}>{day.humidity}%</Text>
                         </View>
@@ -251,24 +251,24 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 6,
   },
-  today: { color: "#999999", fontSize: 20, fontWeight: "600", marginTop: 6 },
-  city: { color: "#999999", fontSize: 20, fontWeight: "600", marginTop: -1 },
-  temp: { color: "#999999", fontSize: 30, fontWeight: "600", marginTop: 4 },
+  today: { color: "#555555", fontSize: 20, fontWeight: "600", marginTop: 6 },
+  city: { color: "#555555", fontSize: 20, fontWeight: "600", marginTop: -1 },
+  temp: { color: "#555555", fontSize: 30, fontWeight: "600", marginTop: 4 },
   feels_like: {
     justifyContent: "center",
     alignItems: "center",
-    color: "#999999",
+    color: "#555555",
     fontSize: 16,
     fontWeight: "600",
   },
-  uvi: { color: "#999999", fontSize: 16, fontWeight: "600" },
-  humidity: { color: "#999999", fontSize: 16, fontWeight: "600" },
+  uvi: { color: "#555555", fontSize: 16, fontWeight: "600" },
+  humidity: { color: "#555555", fontSize: 16, fontWeight: "600" },
 
   uviBox: { justifyContent: "center", alignItems: "center", marginRight: 10 },
   humidityBox: {},
 
   description: {
-    color: "#999999",
+    color: "#555555",
     fontSize: 16,
     fontWeight: "600",
   },

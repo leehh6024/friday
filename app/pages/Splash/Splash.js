@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
   },
-  title: { fontSize: 36, color: "white", fontWeight: "900" },
+  title: { fontSize: 36, color: "white", fontWeight: "800" },
   image: { height: 380 },
   appName: {
     marginBottom: 40,

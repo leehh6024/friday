@@ -93,7 +93,7 @@ export default function BusDetails() {
             <FontAwesome5
               name="search"
               size={28}
-              color="#999999"
+              color="#555555"
               onPress={() => getBusData()}
             />
           </View>

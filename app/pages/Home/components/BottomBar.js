@@ -28,20 +28,6 @@ export default function BottomBar() {
         </Text>
       </View>
       <View style={styles.box}>
-        <FontAwesome
-          name="calendar-check-o"
-          size={32}
-          color="#e5e5e5"
-          onPress={() => navigation.navigate("CalendarDetails")}
-        />
-        <Text
-          style={{ color: "#555555", fontWeight: "600", marginTop: 4 }}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          캘린더
-        </Text>
-      </View>
-      <View style={styles.box}>
         <Ionicons
           name="partly-sunny-sharp"
           size={32}
@@ -91,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 30,
+    paddingHorizontal: 60,
   },
   box: {
     justifyContent: "center",

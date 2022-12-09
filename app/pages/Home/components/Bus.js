@@ -55,7 +55,7 @@ export default function Bus() {
               style={styles.title}
               onPress={() => navigation.navigate("BusDetails")}
             >
-              버스
+              자주타는 버스
             </Text>
           </View>
           <View style={styles.body}>
@@ -118,12 +118,12 @@ const styles = StyleSheet.create({
   title: {
     color: "#A3C1C6",
     fontSize: 20,
-    fontWeight: "700",
+    fontWeight: "800",
     alignItems: "center",
     paddingHorizontal: 20,
   },
-  station: { color: "#999999", fontSize: 17, fontWeight: "600", marginTop: 2 },
-  info: { color: "#999999", fontSize: 17, fontWeight: "500", marginTop: 1 },
+  station: { color: "#555555", fontSize: 17, fontWeight: "600", marginTop: 2 },
+  info: { color: "#555555", fontSize: 17, fontWeight: "500", marginTop: 1 },
 });
 
 // const getBusListAPI = async () => {

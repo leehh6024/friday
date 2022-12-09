@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   category: {
     width: "24%",
     borderRightWidth: 2,
-    borderColor: "#999999",
+    borderColor: "#555555",
     justifyContent: "space-evenly",
     alignItems: "center",
   },

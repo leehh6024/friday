@@ -71,15 +71,8 @@ export default function Calendar() {
           오늘 일정
         </Text>
         <TextInput
-          style={{
-            display: "flex",
-            flex: 1,
-            backgroundColor: "#e2e2e2",
-            borderRadius: 15,
-            paddingHorizontal: 10,
-            paddingVertical: 5,
-          }}
-          placeholder="이곳에 할 일을 입력해주세요!"
+          style={styles.inputTodo}
+          placeholder="+ 할 일을 입력해주세요!"
           value={text}
           onChangeText={setText}
           returnKeyType="done"
@@ -88,20 +81,8 @@ export default function Calendar() {
       </View>
       <ScrollView style={styles.flexbox}>
         {Object.keys(toDos).map((key, idx) => (
-          <View
-            key={idx}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 4,
-              borderBottomWidth: 1,
-              borderBottomColor: "teal",
-            }}
-          >
-            <Text onPress={() => navigation.navigate("CalendarDetails")}>
-              {toDos[key].text}
-            </Text>
+          <View key={idx} style={styles.todoList}>
+            <Text style={styles.todoItem}>ㅇ {toDos[key].text}</Text>
             <View>
               <TouchableOpacity onPress={() => deleteToDos(key)}>
                 <MaterialCommunityIcons
@@ -130,7 +111,7 @@ const styles = StyleSheet.create({
   title: {
     color: "#A3C1C6",
     fontSize: 20,
-    fontWeight: "700",
+    fontWeight: "800",
   },
 
   flexbox: {
@@ -140,4 +121,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     width: "100%",
   },
+  inputTodo: {
+    backgroundColor: "#e2e2e2",
+    borderRadius: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    marginRight: 60,
+    width: "60%",
+  },
+  todoList: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 4,
+    borderBottomWidth: 1.5,
+    borderBottomColor: "#e2e2e2",
+  },
+  todoItem: { fontSize: 15, fontWeight: "700", color: "#555555" },
 });
