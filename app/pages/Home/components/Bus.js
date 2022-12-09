@@ -10,18 +10,17 @@ export default function Bus() {
   const [appId, setAppId] = useState("");
   const navigation = useNavigation();
 
-  const [busStationName, setBusStationName] =
-    useState("등록된 정류소가 없습니다.");
+  const [busStationName, setBusStationName] = useState([]);
   const [busLineNumber, setBusLineNumber] = useState("");
-  const [busArrival, setBusArrival] = useState("");
+  const [busArrivalTime, setBusArrivalTime] = useState("");
 
-  const getBusStationInfo = async () => {
-    const res = await axios.post(`${BASE_IP}/bus/getBusStationInfo`);
-  };
-
-  const getBusArrival = async () => {
+  const getBusArrivalAPI = async () => {
     const res = await axios.get(`${BASE_IP}/bus/busArrival?appId=${appId}`);
     const json = res.data;
+    setBusArrivalTime(json.arrivalInfo["predictTime1"]);
+    setBusStationName(json.stationName);
+    setBusLineNumber(json.lineNumber);
+
     console.log("BUS json data", json);
   };
 
@@ -30,7 +29,7 @@ export default function Bus() {
   }, []);
 
   useEffect(() => {
-    getBusArrival();
+    getBusArrivalAPI();
   }, [appId]);
   return (
     <View
@@ -50,13 +49,12 @@ export default function Bus() {
             </Text>
           </View>
           <View style={styles.body}>
-            <Text style={styles.station}>복우물마을입구</Text>
+            <Text style={styles.station}>{busStationName}</Text>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.info}>{`302       잠실 행     5분후`}</Text>
-            <Text style={styles.info}>{`500-2   잠실 행     33분후`}</Text>
-            <Text style={styles.info}>{`303       왕십리 행  15분후`}</Text>
-            <Text style={styles.info}>{`G1690  갈매 행     55분후`}</Text>
+            <Text style={styles.info}>
+              {busLineNumber} {busArrivalTime}
+            </Text>
           </View>
         </View>
       </View>
