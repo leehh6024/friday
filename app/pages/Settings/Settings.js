@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,10 +7,10 @@ import {
   Dimensions,
   Modal,
   Button,
-  SafeAreaView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { SelectList } from "react-native-dropdown-select-list";
 
 import BottomBar from "../Home/components/BottomBar.js";
 import Tab from "./Tab.js";
@@ -27,6 +27,22 @@ export default function Settings() {
   const [showModalTime, setShowModalTime] = useState(false);
 
   const [activeTab, setActiveTab] = useState("C");
+
+  const [selected, setSelected] = useState("");
+
+  const timeline = [
+    { key: "1", value: "오전 06:00 - 오전 08:00" },
+    { key: "2", value: "오전 08:00 - 오전 10:00" },
+    { key: "3", value: "오전 10:00 - 오후 12:00" },
+    { key: "4", value: "오후 16:00 - 오후 18:00" },
+    { key: "5", value: "오후 18:00 - 오후 20:00" },
+    { key: "6", value: "사용 안함" },
+  ];
+  // useEffect(() => {
+  //   if (selected) {
+  //     console.log("selected: ", selected);
+  //   }
+  // });
 
   return (
     <View style={styles.container}>
@@ -120,16 +136,20 @@ export default function Settings() {
             <View style={styles.modalContainer}>
               <View style={styles.keyword}>
                 <View style={styles.keywordContainer}>
-                  <View style={styles.category}>
-                    <Tab activeTab={activeTab} setActiveTab={setActiveTab} />
-                  </View>
-                  <View style={styles.contents}>
-                    <ScrollView style={{ marginTop: 20 }}>
-                      {activeTab == "C" ? <CalendarTab /> : null}
-                      {activeTab == "W" ? <WeatherTab /> : null}
-                      {activeTab == "B" ? <BusTab /> : null}
-                      {activeTab == "N" ? <NewsTab /> : null}
-                    </ScrollView>
+                  <View
+                    style={{
+                      ...styles.category,
+                      width: "10%",
+                      borderRightWidth: 0,
+                    }}
+                  ></View>
+                  <View style={{ ...styles.contents, width: "66%" }}>
+                    <SelectList
+                      setSelected={(val) => setSelected(val)}
+                      data={timeline}
+                      save="value"
+                      placeholder="센서 작동 시간을 선택하세요."
+                    />
                   </View>
                   <AntDesign
                     style={{
@@ -159,38 +179,6 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  keyword: {
-    flex: 0.6,
-    backgroundColor: "#B9CFDF",
-    borderRadius: 10,
-    marginTop: 200,
-    marginHorizontal: 40,
-  },
-  keywordContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 50,
-    height: 280,
-  },
-  category: {
-    width: "24%",
-    borderRightWidth: 2,
-    borderColor: "#999999",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-  },
-  contents: {
-    width: "60%",
-    justifyContent: "space-evenly",
-    alignItems: "left",
-    paddingHorizontal: 10,
-  },
-
-  timeSet: {},
   container: {
     flex: 1,
     justifyContent: "center",
@@ -245,5 +233,35 @@ const styles = StyleSheet.create({
     color: "#A3C1C6",
     fontWeight: "800",
     fontSize: 24,
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  keyword: {
+    flex: 0.6,
+    backgroundColor: "#B9CFDF",
+    borderRadius: 10,
+    marginTop: 200,
+    marginHorizontal: 40,
+  },
+  keywordContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 50,
+    height: 280,
+  },
+  category: {
+    width: "24%",
+    borderRightWidth: 2,
+    borderColor: "#999999",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  contents: {
+    width: "60%",
+    justifyContent: "space-evenly",
+    alignItems: "left",
+    paddingHorizontal: 10,
   },
 });
