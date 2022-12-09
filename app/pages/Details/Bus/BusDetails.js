@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TextInput, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  Dimensions,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5, Feather } from "@expo/vector-icons";
 
 import BottomBar from "../../Home/components/BottomBar.js";
 import axios from "axios";
@@ -20,7 +27,7 @@ export default function BusDetails() {
 
   useEffect(() => {
     getAppId(setAppId);
-    console.log("numOfBus", numOfBus);
+    // console.log("numOfBus", numOfBus);
   }, []);
 
   const [lineNumber, setLineNumber] = useState("");
@@ -94,7 +101,6 @@ export default function BusDetails() {
           </View>
         </View>
         <View>
-          {/* <Text>{numOfBus.map((value) => ({ routeId }))}</Text> */}
           {numOfBus.map((value, index) => {
             return (
               <View key={index} style={styles.busNumList}>
@@ -120,26 +126,40 @@ export default function BusDetails() {
               </View>
             );
           })}
-          {busStations.map((busStation, index) => {
-            return (
-              <View key={index}>
-                <Text
-                  onPress={() =>
-                    createBusInfo(
-                      busStation.stationName,
-                      busStation.stationId,
-                      busStation.stationSeq
-                    )
-                  }
-                >
-                  {`=====================`}
-                  {busStation.stationName}
-                  {busStation.stationId}
-                  {`=====================`}
-                </Text>
-              </View>
-            );
-          })}
+          <ScrollView style={{ marginTop: 10, marginBottom: 160 }}>
+            <View style={styles.busStationContainer}>
+              {busStations.map((busStation, index) => {
+                return (
+                  <View key={index} style={styles.busStationList}>
+                    <View>
+                      <Text
+                        style={styles.busStationItem}
+                        onPress={() =>
+                          createBusInfo(
+                            busStation.stationName,
+                            busStation.stationId,
+                            busStation.stationSeq
+                          )
+                        }
+                      >
+                        {busStation.stationName}
+                      </Text>
+                    </View>
+                    <Feather
+                      style={{
+                        position: "absolute",
+                        left: -10,
+                        backgroundColor: "#eeeeee",
+                        color: "teal",
+                      }}
+                      name="arrow-down-circle"
+                      size={18}
+                    />
+                  </View>
+                );
+              })}
+            </View>
+          </ScrollView>
         </View>
       </View>
       {/* <View style={styles.busNum}>
@@ -220,6 +240,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e2e2e2",
     marginRight: 10,
     fontSize: 24,
+    fontWeight: "600",
   },
   busNumList: {
     backgroundColor: "#eeeeee",
@@ -234,6 +255,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   busNumItem: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "600",
   },
+  busStationContainer: {
+    paddingHorizontal: 30,
+    marginHorizontal: 6,
+    backgroundColor: "#eeeeee",
+    borderRadius: 10,
+  },
+  busStationList: {
+    position: "relative",
+    backgroundColor: "#eeeeee",
+    paddingHorizontal: 40,
+    paddingVertical: 14,
+    marginHorizontal: 6,
+    borderLeftWidth: 2,
+    borderLeftColor: "teal",
+    borderBottomWidth: 1,
+    borderBottomColor: "#e2e2e2",
+
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  busStationItem: { fontSize: 18, fontWeight: "600" },
 });
