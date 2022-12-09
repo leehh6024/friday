@@ -23,6 +23,7 @@ export default function Bus() {
 
     console.log("BUS json data", json);
   };
+  console.log("time", busArrivalTime);
 
   useEffect(() => {
     getAppId(setAppId);
@@ -53,7 +54,7 @@ export default function Bus() {
           </View>
           <View style={styles.footer}>
             <Text style={styles.info}>
-              {busLineNumber} {busArrivalTime}
+              {busLineNumber} {busArrivalTime}분 후
             </Text>
           </View>
         </View>

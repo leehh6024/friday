@@ -12,7 +12,11 @@ export default function CalendarTab() {
   return (
     <View>
       {calendar.map((calendars, index) => {
-        return <Text style={styles.contentText}>{calendars}</Text>;
+        return (
+          <Text key={index} style={styles.contentText}>
+            {calendars}
+          </Text>
+        );
       })}
     </View>
   );

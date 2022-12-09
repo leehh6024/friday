@@ -11,9 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import BottomBar from "../../Home/components/BottomBar.js";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAppId } from "../../../service.js";
-// import { getAppId } from "../../../service.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -119,7 +117,10 @@ export default function BusDetails() {
                     )
                   }
                 >
+                  {`=====================`}
                   {busStation.stationName}
+                  {busStation.stationId}
+                  {`=====================`}
                 </Text>
               </View>
             );
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: "#e5e5e5",
   },
+
   busNum: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
