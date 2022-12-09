@@ -11,35 +11,62 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import BottomBar from "../../Home/components/BottomBar.js";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getAppId } from "../../../service.js";
+// import { getAppId } from "../../../service.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
+const BASE_IP = "http://172.16.239.139:8080";
+
 export default function BusDetails() {
   const navigation = useNavigation();
+  const [appId, setAppId] = useState("");
   const [inputBus, setInputBus] = useState("");
   const [numOfBus, setNumOfBus] = useState([]);
-  // const [routeId, setRouteId] = useState("");
   const [busStations, setBusStations] = useState([]);
+
+  useEffect(() => {
+    getAppId(setAppId);
+  }, []);
+
+  const [lineNumber, setLineNumber] = useState("");
+  const [stationName, setStationName] = useState("");
+  const [stationId, setStationId] = useState("");
+  const [routeId, setRouteId] = useState("");
+  const [staOrder, setStaOrder] = useState("");
 
   const getBusListAPI = async () => {
     const res = await axios.get(
-      `http://172.16.239.139:8080/bus/busList?lineNumber=${inputBus}`
+      `${BASE_IP}/bus/busList?lineNumber=${inputBus}`
     );
     console.log(res.data);
     // res.data.forEach((value) => console.log(value));
     const busNum = res.data[0].routeName;
     const busStation = res.data[0].routeId;
     setNumOfBus(res.data);
-    // setRouteId(busStation);
+    setRouteId(busStation.toString());
+    setLineNumber(inputBus.toString());
   };
 
   const getStationListAPI = async (routeId) => {
     const res = await axios.get(
-      `http://172.16.239.139:8080/bus/busStation?routeId=${routeId}`
+      `${BASE_IP}/bus/busStation?routeId=${routeId}`
       // `http://172.16.239.139:8080/bus/busStation?routeId=${"200000085"}`
     );
     setBusStations(res.data);
     console.log(res.data);
+  };
+
+  const createBusInfo = async (stationName, stationId, staOrder) => {
+    const res = await axios.post(`${BASE_IP}/bus/updateBus`, {
+      appId,
+      lineNumber: lineNumber.toString(),
+      stationName: stationName.toString(),
+      stationId: stationId.toString(),
+      routeId: routeId.toString(),
+      staOrder: staOrder.toString(),
+    });
   };
 
   const getBusData = () => {
@@ -63,7 +90,7 @@ export default function BusDetails() {
             style={styles.inputBusNum}
           >{`자주이용하시는 버스 번호를 입력해주세요.`}</Text>
           <TextInput
-            style={{ backgroundColor: "#999999" }}
+            style={{ backgroundColor: "#e2e2e2" }}
             onChangeText={(text) => setInputBus(text)}
           />
           <Button title="전송" onPress={() => getBusData()} />
@@ -73,17 +100,27 @@ export default function BusDetails() {
           {numOfBus.map((value, index) => {
             return (
               <View key={index}>
-                <Text>{value.routeName}</Text>
                 <Text onPress={() => getStationListAPI(value.routeId)}>
-                  {value.routeId}
+                  버스번호 {value.routeName}
                 </Text>
+                <Text>데이터상 버스 아이디 {value.routeId}</Text>
               </View>
             );
           })}
           {busStations.map((busStation, index) => {
             return (
               <View key={index}>
-                <Text>{busStation.stationName}</Text>
+                <Text
+                  onPress={() =>
+                    createBusInfo(
+                      busStation.stationName,
+                      busStation.stationId,
+                      busStation.stationSeq
+                    )
+                  }
+                >
+                  {busStation.stationName}
+                </Text>
               </View>
             );
           })}

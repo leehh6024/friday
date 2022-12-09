@@ -58,7 +58,7 @@ export default function Splash() {
     idTestAPI();
     if (userId == true) {
       const setHome = setTimeout(() => {
-        navigation.navigate("Home");
+        navigation.navigate("Home", appId);
       }, 1000);
     }
   });
