@@ -13,15 +13,22 @@ export default function NewsTab() {
     <View>
       {news.map((newses, index) => {
         return (
-          <Text key={index} style={styles.contentText}>
-            {newses}
-          </Text>
+          <View style={styles.contextBox}>
+            <Text key={index} style={styles.contentText}>
+              {newses}
+            </Text>
+          </View>
         );
       })}
     </View>
   );
 }
 const styles = StyleSheet.create({
+  contextBox: {
+    borderBottomColor: "#e1e1e1",
+    borderBottomWidth: 1,
+    marginBottom: 4,
+  },
   contentText: {
     marginBottom: 6,
     fontSize: 18,

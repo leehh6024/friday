@@ -12,15 +12,22 @@ export default function WeatherTab() {
     <View>
       {weather.map((weathers, index) => {
         return (
-          <Text key={index} style={styles.contentText}>
-            {weathers}
-          </Text>
+          <View style={styles.contextBox}>
+            <Text key={index} style={styles.contentText}>
+              {weathers}
+            </Text>
+          </View>
         );
       })}
     </View>
   );
 }
 const styles = StyleSheet.create({
+  contextBox: {
+    borderBottomColor: "#e1e1e1",
+    borderBottomWidth: 1,
+    marginBottom: 4,
+  },
   contentText: {
     marginBottom: 6,
     fontSize: 18,

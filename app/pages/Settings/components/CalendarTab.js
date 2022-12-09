@@ -13,15 +13,22 @@ export default function CalendarTab() {
     <View>
       {calendar.map((calendars, index) => {
         return (
-          <Text key={index} style={styles.contentText}>
-            {calendars}
-          </Text>
+          <View style={styles.contextBox}>
+            <Text key={index} style={styles.contentText}>
+              {calendars}
+            </Text>
+          </View>
         );
       })}
     </View>
   );
 }
 const styles = StyleSheet.create({
+  contextBox: {
+    borderBottomColor: "#e1e1e1",
+    borderBottomWidth: 1,
+    marginBottom: 4,
+  },
   contentText: {
     marginBottom: 6,
     fontSize: 18,
