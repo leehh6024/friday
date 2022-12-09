@@ -15,13 +15,23 @@ export default function Bus() {
   const [busArrivalTime, setBusArrivalTime] = useState("");
 
   const getBusArrivalAPI = async () => {
+    console.log("getBusArrivalAPI start");
     const res = await axios.get(`${BASE_IP}/bus/busArrival?appId=${appId}`);
     const json = res.data;
-    setBusArrivalTime(json.arrivalInfo["predictTi\\\\\\\\\\\\\\me1"]);
+    // console.log("=======================");
+    // console.log("appId:", appId);
+    // console.log(res.data);
+    // console.log(typeof res.data);
+    // console.log(res.data.arrivalInfo[0].predictTime1);
+    // console.log(json.stationName);
+    // console.log(json.lineNumber);
+    // console.log("=======================");
+    setBusArrivalTime(json.arrivalInfo[0].predictTime1);
     setBusStationName(json.stationName);
     setBusLineNumber(json.lineNumber);
 
     console.log("BUS json data", json);
+    console.log("getBusArrivalAPI end");
   };
   console.log("time", busArrivalTime);
 
@@ -53,9 +63,8 @@ export default function Bus() {
             <Text style={styles.station}>{busStationName}</Text>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.info}>
-              {busLineNumber} {busArrivalTime}분 후
-            </Text>
+            <Text style={styles.info}>{busLineNumber}</Text>
+            <Text style={styles.info}>{busArrivalTime}분 후</Text>
           </View>
         </View>
       </View>
@@ -68,13 +77,11 @@ export default function Bus() {
             ></Text>
           </View>
           <View style={styles.body}>
-            <Text style={styles.station}>가천대학교</Text>
+            <Text style={styles.station}>{busStationName}</Text>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.info}>{`302       잠실 행     5분후`}</Text>
-            <Text style={styles.info}>{`500-2   잠실 행     33분후`}</Text>
-            <Text style={styles.info}>{`303       왕십리 행  15분후`}</Text>
-            <Text style={styles.info}>{`G1690  갈매 행     55분후`}</Text>
+            <Text style={styles.info}>{busLineNumber}</Text>
+            <Text style={styles.info}>{busArrivalTime}분 후</Text>
           </View>
         </View>
       </View>
@@ -101,8 +108,10 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   footer: {
+    paddingHorizontal: 10,
     width: "100%",
-    justifyContent: "left",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "left",
     marginTop: 6,
   },
@@ -115,7 +124,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   station: { color: "#999999", fontSize: 17, fontWeight: "600", marginTop: 2 },
-  info: { color: "#999999", fontSize: 15, fontWeight: "500", marginTop: 1 },
+  info: { color: "#999999", fontSize: 17, fontWeight: "500", marginTop: 1 },
 });
 
 // const getBusListAPI = async () => {
