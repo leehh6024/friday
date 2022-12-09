@@ -17,8 +17,8 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const BASE_IP = "http://172.16.239.139:8080";
 
 export default function Splash() {
-  const appId = useRef("");
-  const [userId, setUserId] = useState(true);
+  const [appId, setAppId] = useState("");
+  const [userId, setUserId] = useState(false);
 
   const navigation = useNavigation();
 
@@ -30,23 +30,17 @@ export default function Splash() {
     }
   };
 
-  const idTestAPI = async () => {
+  const getData = async () => {
     const value = await AsyncStorage.getItem("@storage_Id");
 
     console.log("value", value);
     if (value == null) {
-      const id = Date.now().toString();
-
-      appId.current = id;
-      const response = await axios.post(BASE_IP + "/user/addUser", {
-        macId: "E4:5F:01:D6:0F:91",
-        appId: id,
-      });
-      console.log("idTest : ", response.data.status);
-      storeData(id);
     } else {
-      console.log("appId is OK");
-      appId.current = value;
+      console.log("data 존재");
+      setAppId(value);
+      const setHome = setTimeout(() => {
+        navigation.navigate("Home", appId);
+      }, 1000);
     }
   };
 
@@ -54,14 +48,10 @@ export default function Splash() {
   // appId 있으면 => setTimeout(); 이때, 앱 화면은 기본 스플래시 창을 제공
   // appId 없으면 => <TextInput /> 에 AI스피커의 mac주소를 입력하고,
   // 서버에 해당 mac주소 전송 및 서버 내의 조회. 조회에 성공하면 Home 화면으로 이동.
+
   useEffect(() => {
-    idTestAPI();
-    if (userId == true) {
-      const setHome = setTimeout(() => {
-        navigation.navigate("Home", appId);
-      }, 1000);
-    }
-  });
+    getData();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -79,7 +69,7 @@ export default function Splash() {
         />
         <Text style={styles.appName}>FRIDAY,</Text>
       </View>
-      {appId ? (
+      {appId !== "" ? (
         <View style={styles.footer}>
           <Text style={styles.text}>
             비서를 호출하는 중입니다. 잠시만 기다려주세요...

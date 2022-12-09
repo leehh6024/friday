@@ -1,72 +1,124 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { getAppId } from "../../../service";
+import axios from "axios";
+
+const BASE_IP = "http://172.16.239.139:8080";
 
 export default function Calendar() {
+  const [appId, setAppId] = useState("");
   const navigation = useNavigation();
+  const [text, setText] = useState("");
+  const [toDos, setToDos] = useState({});
+
+  const updateToDOAPI = async (toDos) => {
+    const res = await axios.post(`${BASE_IP}/todo/updateToDo`, {
+      appId,
+      toDos: JSON.stringify(toDos),
+    });
+  };
+
+  useEffect(() => {
+    getAppId(setAppId);
+  });
+
+  const addToDo = () => {
+    console.log("addToDos!");
+    if (!text) {
+      return;
+    }
+
+    const newToDos = {
+      ...toDos,
+      [Date.now()]: {
+        text,
+        isCompleted: false,
+      },
+    };
+    setToDos(newToDos);
+    updateToDOAPI(newToDos);
+    console.log(newToDos);
+    setText("");
+  };
+
+  const deleteToDos = (key) => {
+    const newToDos = { ...toDos };
+    delete newToDos[key];
+    setToDos(newToDos);
+    updateToDOAPI(newToDos);
+  };
   return (
     <View style={styles.calendar}>
-      <Text
-        style={{ ...styles.title, paddingHorizontal: 20 }}
-        onPress={() => navigation.navigate("CalendarDetails")}
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
       >
-        오늘 일정
-      </Text>
+        <Text
+          style={{ ...styles.title, paddingHorizontal: 20 }}
+          onPress={() => navigation.navigate("CalendarDetails")}
+        >
+          오늘 일정
+        </Text>
+        <TextInput
+          style={{
+            display: "flex",
+            flex: 1,
+            backgroundColor: "#e2e2e2",
+            borderRadius: 15,
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+          }}
+          placeholder="이곳에 할 일을 입력해주세요!"
+          value={text}
+          onChangeText={setText}
+          returnKeyType="done"
+          onSubmitEditing={addToDo}
+        />
+      </View>
       <ScrollView style={styles.flexbox}>
-        <Text
+        {/* <Text
           style={styles.title}
           onPress={() => navigation.navigate("CalendarDetails")}
         >
           오늘의 일정
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
-
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
-        <Text
-          style={styles.title}
-          onPress={() => navigation.navigate("CalendarDetails")}
-        >
-          오늘의 일정
-        </Text>
+        </Text> */}
+        {Object.keys(toDos).map((key, idx) => (
+          <View
+            key={idx}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              style={styles.title}
+              onPress={() => navigation.navigate("CalendarDetails")}
+            >
+              {toDos[key].text}
+            </Text>
+            <View>
+              <TouchableOpacity onPress={() => deleteToDos(key)}>
+                <MaterialCommunityIcons
+                  name="trash-can-outline"
+                  style={{ fontSize: 28 }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        ))}
       </ScrollView>
     </View>
   );
