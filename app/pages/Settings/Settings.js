@@ -106,28 +106,51 @@ export default function Settings() {
             </View>
           </Modal>
         </View>
-        <View style={styles.timeSet}>
+        <View>
+          {/* 시간설정 모달창 컨테이너 */}
           <Modal
-            animationType={"slide"}
-            transparent={false}
+            animationType={"fade"}
+            transparent={true}
             visible={showModalTime}
             onRequestClose={() => {
               console.log("Modal has been closed.");
             }}
           >
-            <View style={styles.modal}>
-              <Text style={styles.text}>센서 작동 시간 설정 모달</Text>
-              <Button
-                title="Click To Close Modal"
-                onPress={() => {
-                  setShowModalTime(!showModalTime);
-                }}
-              />
+            {/* 모달창 안에 들어가는 내용들 */}
+            <View style={styles.modalContainer}>
+              <View style={styles.keyword}>
+                <View style={styles.keywordContainer}>
+                  <View style={styles.category}>
+                    <Tab activeTab={activeTab} setActiveTab={setActiveTab} />
+                  </View>
+                  <View style={styles.contents}>
+                    <ScrollView style={{ marginTop: 20 }}>
+                      {activeTab == "C" ? <CalendarTab /> : null}
+                      {activeTab == "W" ? <WeatherTab /> : null}
+                      {activeTab == "B" ? <BusTab /> : null}
+                      {activeTab == "N" ? <NewsTab /> : null}
+                    </ScrollView>
+                  </View>
+                  <AntDesign
+                    style={{
+                      ...styles.keywordContainer,
+                      marginTop: -46,
+                      marginRight: 4,
+                      height: 40,
+                    }}
+                    name="closecircle"
+                    size={26}
+                    color="#666666"
+                    onPress={() => {
+                      setShowModalTime(!showModalTime);
+                    }}
+                  />
+                </View>
+              </View>
             </View>
           </Modal>
         </View>
       </View>
-
       <View style={styles.footer}>
         <BottomBar />
       </View>
