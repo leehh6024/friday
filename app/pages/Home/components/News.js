@@ -93,9 +93,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: "100%",
   },
-  articleBox: { borderBottomWidth: 2 },
+  articleBox: {
+    borderBottomWidth: 1.5,
+    borderBottomColor: "#e2e2e2",
+    marginBottom: 4,
+  },
   article: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "800",
     marginBottom: 4,
   },
