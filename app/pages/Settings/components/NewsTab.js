@@ -12,7 +12,11 @@ export default function NewsTab() {
   return (
     <View>
       {news.map((newses, index) => {
-        return <Text style={styles.contentText}>{newses}</Text>;
+        return (
+          <Text key={index} style={styles.contentText}>
+            {newses}
+          </Text>
+        );
       })}
     </View>
   );

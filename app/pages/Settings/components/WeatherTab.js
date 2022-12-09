@@ -11,7 +11,11 @@ export default function WeatherTab() {
   return (
     <View>
       {weather.map((weathers, index) => {
-        return <Text style={styles.contentText}>{weathers}</Text>;
+        return (
+          <Text key={index} style={styles.contentText}>
+            {weathers}
+          </Text>
+        );
       })}
     </View>
   );

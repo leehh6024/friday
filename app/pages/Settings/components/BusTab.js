@@ -12,7 +12,11 @@ export default function BusTab() {
   return (
     <View>
       {bus.map((buses, index) => {
-        return <Text style={styles.contentText}>{buses}</Text>;
+        return (
+          <Text key={index} style={styles.contentText}>
+            {buses}
+          </Text>
+        );
       })}
     </View>
   );
