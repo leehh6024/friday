@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+
 import BottomBar from "../../Home/components/BottomBar.js";
 import axios from "axios";
 import { getAppId } from "../../../service.js";
@@ -26,6 +20,7 @@ export default function BusDetails() {
 
   useEffect(() => {
     getAppId(setAppId);
+    console.log("numOfBus", numOfBus);
   }, []);
 
   const [lineNumber, setLineNumber] = useState("");
@@ -83,25 +78,45 @@ export default function BusDetails() {
         />
       </View>
       <View style={styles.body}>
-        <View style={styles.busNum}>
-          <Text
-            style={styles.inputBusNum}
-          >{`자주이용하시는 버스 번호를 입력해주세요.`}</Text>
-          <TextInput
-            style={{ backgroundColor: "#e2e2e2" }}
-            onChangeText={(text) => setInputBus(text)}
-          />
-          <Button title="전송" onPress={() => getBusData()} />
+        <View style={styles.busContainer}>
+          <View style={styles.searchBox}>
+            <TextInput
+              style={styles.inputBox}
+              onChangeText={(text) => setInputBus(text)}
+              placeholder="버스 번호를 검색해주세요."
+            />
+            <FontAwesome5
+              name="search"
+              size={28}
+              color="#999999"
+              onPress={() => getBusData()}
+            />
+          </View>
         </View>
         <View>
           {/* <Text>{numOfBus.map((value) => ({ routeId }))}</Text> */}
           {numOfBus.map((value, index) => {
             return (
-              <View key={index}>
-                <Text onPress={() => getStationListAPI(value.routeId)}>
-                  버스번호 {value.routeName}
+              <View key={index} style={styles.busNumList}>
+                <Text
+                  style={styles.busNumItem}
+                  onPress={() => getStationListAPI(value.routeId)}
+                >
+                  <FontAwesome5 name="bus" size={20} color="black" />
+                  {value.routeName}
                 </Text>
-                <Text>데이터상 버스 아이디 {value.routeId}</Text>
+                <Text
+                  style={styles.busNumItem}
+                  onPress={() => getStationListAPI(value.routeId)}
+                >
+                  {value.regionName}
+                </Text>
+                <Text
+                  style={styles.busNumItem}
+                  onPress={() => getStationListAPI(value.routeId)}
+                >
+                  {value.routeTypeName}
+                </Text>
               </View>
             );
           })}
@@ -184,18 +199,41 @@ const styles = StyleSheet.create({
     color: "#e5e5e5",
   },
 
-  busNum: {
+  busContainer: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
     height: 70,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     paddingVertical: 10,
     marginHorizontal: 6,
+    marginTop: 10,
   },
-  inputBusNum: {
-    width: SCREEN_WIDTH,
-    color: "#A3C1C6",
-    fontWeight: "800",
-    fontSize: 20,
+  searchBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "left",
+    paddingVertical: 10,
+  },
+  inputBox: {
+    width: 290,
+    height: 30,
+    backgroundColor: "#e2e2e2",
+    marginRight: 10,
+    fontSize: 24,
+  },
+  busNumList: {
+    backgroundColor: "#eeeeee",
+    borderRadius: 25,
+    height: 70,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginHorizontal: 6,
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  busNumItem: {
+    fontSize: 16,
   },
 });
