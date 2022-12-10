@@ -16,6 +16,7 @@ export default function Bus() {
   const getBusArrivalAPI = async () => {
     const res = await axios.get(`${BASE_IP}/bus/busArrival?appId=${appId}`);
     const json = res.data;
+    console.log(json);
     setBusArrivalTime(json.arrivalInfo[0].predictTime1);
     setBusStationName(json.stationName);
     setBusLineNumber(json.lineNumber);
@@ -35,7 +36,7 @@ export default function Bus() {
         marginHorizontal: 6,
       }}
     >
-      <View style={{ ...styles.bus, marginRight: 4, width: "49%" }}>
+      <View style={{ ...styles.bus, marginRight: 8, width: "48%" }}>
         <View style={styles.day}>
           <View style={styles.header}>
             <Text
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     width: "50%",
     backgroundColor: "#eeeeee",
     borderRadius: 25,
-    height: 160,
+    height: 120,
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginTop: 10,

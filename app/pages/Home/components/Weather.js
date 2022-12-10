@@ -27,16 +27,13 @@ export default function Weather() {
   const [appId, setAppId] = useState("");
 
   const weatherAPI = async () => {
-    console.log("weatherAPI start", appId);
     const res = await axios.get(`${BASE_IP}/weather/getWeather?appId=${appId}`);
-    console.log("res.data===", res.data);
 
     const json = await JSON.parse(res.data.weatherInfo);
     const convertData = convertUTCToTime(json.daily);
 
     setDays(convertData);
     setCity(res.data.city);
-    console.log("weatherAPI end", appId);
   };
 
   const setLocation = async () => {
@@ -54,12 +51,6 @@ export default function Weather() {
     weatherAPI();
   };
 
-  // useEffect(() => {
-  //   // AsyncStorage.clear(); // 사용금지
-  //   idTestAPI();
-  //   getCoordinate();
-  // }, []); ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-
   useEffect(() => {
     // AsyncStorage.clear(); // 사용금지
     getAppId(setAppId);
@@ -72,7 +63,7 @@ export default function Weather() {
 
   const createWeatherAPI = async (latitude, longitude, city) => {
     const res = await axios.post(`${BASE_IP} + "/weather/createWeather`, {
-      appId: appId.current,
+      appId: appId,
       latitude,
       longitude,
       city,

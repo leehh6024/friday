@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import BottomBar from "../../Home/components/BottomBar.js";
 
 import axios from "axios";
-import { BASE_IP } from "../../../service.js";
+import { BASE_IP, getAppId } from "../../../service.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -28,7 +28,7 @@ export default function WeatherDetails() {
   const [ok, setOk] = useState(true);
   const navigation = useNavigation();
 
-  const appId = useRef("");
+  const [appId, setAppId] = useState("");
 
   const convertUTCToTime = (weatherData) => {
     const data = weatherData;
@@ -51,9 +51,7 @@ export default function WeatherDetails() {
   ];
 
   const weatherAPI = async () => {
-    const res = await axios.get(
-      `${BASE_IP}/weather/getWeather?appId=${appId.current}`
-    );
+    const res = await axios.get(`${BASE_IP}/weather/getWeather?appId=${appId}`);
     const json = await JSON.parse(res.data.weatherInfo);
     const convertData = convertUTCToTime(json.daily);
     setDays(convertData);
@@ -77,7 +75,7 @@ export default function WeatherDetails() {
 
   const createWeatherAPI = async (latitude, longitude, city) => {
     const res = await axios.post(BASE_IP + "/weather/createWeather", {
-      appId: appId.current,
+      appId: appId,
       latitude,
       longitude,
       city,
@@ -85,6 +83,7 @@ export default function WeatherDetails() {
   };
 
   useEffect(() => {
+    getAppId(setAppId);
     weatherAPI();
   }, []);
 
