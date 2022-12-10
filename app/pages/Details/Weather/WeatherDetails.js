@@ -109,7 +109,7 @@ export default function WeatherDetails() {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           ></View>
-          {days?.length === 0
+          {days?.length === 0 && appId !== ""
             ? null
             : days?.map((day, index) => (
                 <View key={index}>
