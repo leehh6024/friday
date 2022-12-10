@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Linking } from "react-native";
 import { Link, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { BASE_IP } from "../../../service";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -24,7 +25,8 @@ export default function News() {
 
   return (
     <View style={styles.news}>
-      <Text style={{ ...styles.title, paddingHorizontal: 15 }}>
+      <Text style={{ ...styles.title, paddingHorizontal: 8 }}>
+        <FontAwesome5 name="hacker-news" size={24} color="#A3C1C6" />
         주요 뉴스 헤드라인
       </Text>
       <ScrollView style={styles.flexbox}>

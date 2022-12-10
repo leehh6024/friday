@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
-import { Fontisto, Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,7 +19,6 @@ const icons = {
 
 export default function Weather() {
   const [city, setCity] = useState("Loading...");
-  const [loading, setLoading] = useState(false);
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
   const navigation = useNavigation();
@@ -52,7 +51,6 @@ export default function Weather() {
   };
 
   useEffect(() => {
-    // AsyncStorage.clear(); // 사용금지
     getAppId(setAppId);
     weatherAPI();
   }, []);
@@ -101,34 +99,42 @@ export default function Weather() {
   return (
     <View>
       <View style={styles.weather}>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text
-            style={styles.title}
-            // onPress={() => AsyncStorage.clear()} // 사용금지
+        {days.length === 0 ? (
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Text style={{ color: "#555555", fontSize: 16, fontWeight: "800" }}>
+              오늘 날씨 알려드릴게요, 잠시만 기다려주세요!
+            </Text>
+          </View>
+        ) : (
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            {`${days[0]?.dt.getMonth() + 1}월 ${days[0]?.dt.getDate()}일 ${
-              date[days[0]?.dt.getDay()]
-            }`}
-          </Text>
-          <Ionicons
-            name="reload-circle-outline"
-            size={16}
-            color="#555555"
-            onPress={() => reloadWeather()}
-          />
-        </View>
+            <Text
+              style={styles.title}
+              // onPress={() => AsyncStorage.clear()} // 사용금지
+            >
+              <MaterialCommunityIcons
+                name="weather-partly-cloudy"
+                size={22}
+                color="#A3C1C6"
+              />
+              {`${days[0]?.dt.getMonth() + 1}월 ${days[0]?.dt.getDate()}일 ${
+                date[days[0]?.dt.getDay()]
+              }`}{" "}
+              날씨
+            </Text>
+            <Ionicons
+              name="reload-circle-outline"
+              size={16}
+              color="#555555"
+              onPress={() => reloadWeather()}
+            />
+          </View>
+        )}
 
         {days?.length === 0 ? null : (
           <View>
             <View style={styles.container}>
-              {/* <View>
-                <ActivityIndicator
-                  animating={loading}
-                  color="#A3C1C6"
-                  size="small"
-                  style={{ marginTop: 30 }}
-                />
-              </View> */}
               <View style={styles.flexbox1}>
                 <Fontisto
                   name={icons[days[0].weather[0].main]}
@@ -200,7 +206,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "900",
     alignItems: "center",
-    paddingHorizontal: 10,
   },
 
   city: { color: "#555555", fontSize: 20, fontWeight: "800", marginTop: -1 },
@@ -211,6 +216,7 @@ const styles = StyleSheet.create({
     color: "#555555",
     fontSize: 16,
     fontWeight: "800",
+    marginTop: 1,
   },
   uvi: { color: "#555555", fontSize: 16, fontWeight: "800" },
   humidity: { color: "#555555", fontSize: 16, fontWeight: "800" },

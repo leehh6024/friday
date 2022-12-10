@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { Ionicons } from "@expo/vector-icons";
 import { getAppId } from "../../../service";
 import { BASE_IP } from "../../../service";
 
@@ -45,6 +46,7 @@ export default function Bus() {
               style={styles.title}
               onPress={() => navigation.navigate("BusDetails")}
             >
+              <Ionicons name="bus-sharp" size={20} color="#A3C1C6" />
               자주타는 버스
             </Text>
           </View>
@@ -52,8 +54,11 @@ export default function Bus() {
             <Text style={styles.station}>{busStationName}</Text>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.info}>{busLineNumber}</Text>
-            <Text style={styles.info}>{busArrivalTime}분 후</Text>
+            <Text style={styles.info}>
+              <Ionicons name="bus-sharp" size={20} color="red" />
+              {busLineNumber}
+            </Text>
+            <Text style={styles.info}>{busArrivalTime} 분 후</Text>
           </View>
         </View>
       </View>
@@ -61,16 +66,19 @@ export default function Bus() {
         <View style={styles.day}>
           <View style={styles.header}>
             <Text
-              style={{ ...styles.title, marginTop: 4 }}
+              style={{ ...styles.title, marginTop: 6 }}
               onPress={() => navigation.navigate("BusDetails")}
             ></Text>
           </View>
           <View style={styles.body}>
-            <Text style={styles.station}>{busStationName}</Text>
+            <Text style={styles.station}>정보과학도서관</Text>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.info}>{busLineNumber}</Text>
-            <Text style={styles.info}>{busArrivalTime}분 후</Text>
+            <Text style={styles.info}>
+              <Ionicons name="bus-sharp" size={20} color="green" />
+              11-3
+            </Text>
+            <Text style={styles.info}>6 분 후</Text>
           </View>
         </View>
       </View>
@@ -110,7 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "800",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   station: { color: "#555555", fontSize: 17, fontWeight: "800", marginTop: 2 },
   info: { color: "#555555", fontSize: 17, fontWeight: "800", marginTop: 1 },

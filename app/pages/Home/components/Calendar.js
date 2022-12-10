@@ -6,10 +6,9 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import { getAppId } from "../../../service";
 import axios from "axios";
 import { BASE_IP } from "../../../service";
@@ -34,8 +33,10 @@ export default function Calendar() {
       return;
     }
     const res = await axios.get(`${BASE_IP}/todo/getToDo?appId=${appId}`);
-    const json = JSON.parse(res.data.todos.todos);
+    const json = JSON.parse(res.data.todoInfo.todos);
     setToDos(json);
+    // console.log(Object.keys(json)[0]);
+    // console.log(typeof Object.keys(json)[0]);
   };
 
   useEffect(() => {
@@ -74,10 +75,11 @@ export default function Calendar() {
         }}
       >
         <Text
-          style={{ ...styles.title, paddingHorizontal: 20 }}
+          style={{ ...styles.title, paddingHorizontal: 10 }}
           onPress={() => navigation.navigate("CalendarDetails")}
         >
-          이현호 님의 일정
+          <FontAwesome5 name="calendar-alt" size={20} color="#A3C1C6" />
+          {` 이현호 님의 일정`}
         </Text>
         <TextInput
           style={styles.inputTodo}
@@ -112,8 +114,8 @@ export default function Calendar() {
                   <TouchableOpacity onPress={() => deleteToDos(key)}>
                     <MaterialCommunityIcons
                       name="trash-can-outline"
-                      color="teal"
-                      style={{ fontSize: 28 }}
+                      color="#A3C1C6"
+                      style={{ fontSize: 24 }}
                     />
                   </TouchableOpacity>
                 </View>
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
   title: {
     color: "#A3C1C6",
     fontSize: 20,
-    fontWeight: "800",
+    fontWeight: "900",
   },
 
   flexbox: {
