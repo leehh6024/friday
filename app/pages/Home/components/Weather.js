@@ -178,42 +178,42 @@ export default function Weather() {
 
 const styles = StyleSheet.create({
   container: {},
-  flexbox1: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 4,
-  },
-  flexbox2: { flexDirection: "row", paddingHorizontal: 4 },
-
   weather: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
-    height: 120,
+    height: 130,
     paddingHorizontal: 20,
     paddingVertical: 5,
     marginTop: 10,
     marginHorizontal: 6,
   },
+  flexbox1: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  flexbox2: { flexDirection: "row", paddingHorizontal: 4 },
+
   title: {
     color: "#A3C1C6",
     fontSize: 20,
-    fontWeight: "800",
+    fontWeight: "900",
     alignItems: "center",
     paddingHorizontal: 10,
   },
 
-  city: { color: "#555555", fontSize: 20, fontWeight: "600", marginTop: -1 },
-  temp: { color: "#555555", fontSize: 30, fontWeight: "600", marginTop: 4 },
+  city: { color: "#555555", fontSize: 20, fontWeight: "800", marginTop: -1 },
+  temp: { color: "#555555", fontSize: 30, fontWeight: "800", marginTop: 4 },
   feels_like: {
     justifyContent: "center",
     alignItems: "center",
     color: "#555555",
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "800",
   },
-  uvi: { color: "#555555", fontSize: 16, fontWeight: "600" },
-  humidity: { color: "#555555", fontSize: 16, fontWeight: "600" },
+  uvi: { color: "#555555", fontSize: 16, fontWeight: "800" },
+  humidity: { color: "#555555", fontSize: 16, fontWeight: "800" },
 
   uviBox: { justifyContent: "center", alignItems: "center", marginRight: 10 },
   humidityBox: {},
@@ -221,6 +221,7 @@ const styles = StyleSheet.create({
   description: {
     color: "#555555",
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "800",
+    marginLeft: 6,
   },
 });

@@ -24,49 +24,19 @@ export default function News() {
 
   return (
     <View style={styles.news}>
-      <Text
-        style={{ ...styles.title, paddingHorizontal: 15 }}
-        onPress={() => navigation.navigate("NewsDetails")}
-      >
-        주요 뉴스
+      <Text style={{ ...styles.title, paddingHorizontal: 15 }}>
+        주요 뉴스 헤드라인
       </Text>
       <ScrollView style={styles.flexbox}>
-        {/* test 용 */}
-        <View style={styles.articleBox}>
-          <Text style={styles.article}>
-            안녕하소 황희찬 손흥민 황인범 이강인 김민재 진짜진짜 월드컵 잘햇다
-            브라질전은 진짜 눈물이 나지만 어절수 없지
-          </Text>
-        </View>
-        <Text style={styles.article}>
-          안녕하소 황희찬 손흥민 황인범 이강인 김민재 진짜진짜 월드컵 잘햇다
-          브라질전은 진짜 눈물이 나지만 어절수 없지
-        </Text>
-        <Text style={styles.article}>
-          안녕하소 황희찬 손흥민 황인범 이강인 김민재 진짜진짜 월드컵 잘햇다
-          브라질전은 진짜 눈물이 나지만 어절수 없지
-        </Text>
-        <Text style={styles.article}>
-          안녕하소 황희찬 손흥민 황인범 이강인 김민재 진짜진짜 월드컵 잘햇다
-          브라질전은 진짜 눈물이 나지만 어절수 없지
-        </Text>
-        <Text style={styles.article}>
-          안녕하소 황희찬 손흥민 황인범 이강인 김민재 진짜진짜 월드컵 잘햇다
-          브라질전은 진짜 눈물이 나지만 어절수 없지
-        </Text>
-        <Text style={styles.article}>
-          안녕하소 황희찬 손흥민 황인범 이강인 김민재 진짜진짜 월드컵 잘햇다
-          브라질전은 진짜 눈물이 나지만 어절수 없지
-        </Text>
-        <Text style={styles.article}>안녕하소</Text>
-        <Text style={styles.article}>안녕하소</Text>
-        <Text style={styles.article}>안녕하소</Text>
-        <Text style={styles.article}>안녕하소</Text>
-
         {news.map((article, index) => (
-          <Text key={index} onPress={() => Linking.openURL(article.url)}>
-            {article.title}
-          </Text>
+          <View key={index} style={styles.articleBox}>
+            <Text
+              style={styles.article}
+              onPress={() => Linking.openURL(article.url)}
+            >
+              {article.title}
+            </Text>
+          </View>
         ))}
       </ScrollView>
     </View>
@@ -91,11 +61,12 @@ const styles = StyleSheet.create({
   articleBox: {
     borderBottomWidth: 1.5,
     borderBottomColor: "#e2e2e2",
-    marginBottom: 4,
+    marginBottom: 8,
   },
   article: {
     fontSize: 16,
     fontWeight: "800",
-    marginBottom: 4,
+    marginBottom: 8,
+    color: "#555555",
   },
 });

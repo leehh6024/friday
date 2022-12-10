@@ -20,40 +20,50 @@ export default function Calendar() {
   const [text, setText] = useState("");
   const [toDos, setToDos] = useState({});
 
-  const updateToDOAPI = async (toDos) => {
+  const updateToDoAPI = async (toDos) => {
     const res = await axios.post(`${BASE_IP}/todo/updateToDo`, {
       appId,
       toDos: JSON.stringify(toDos),
     });
+    const json = JSON.parse(res.data.savedTodos.todos);
+    setToDos(json);
+  };
+
+  const getToDoAPI = async (toDos) => {
+    if (appId === "") {
+      return;
+    }
+    const res = await axios.get(`${BASE_IP}/todo/getToDo?appId=${appId}`);
+    const json = JSON.parse(res.data.todos.todos);
+    setToDos(json);
   };
 
   useEffect(() => {
     getAppId(setAppId);
-  });
+  }, []);
+
+  useEffect(() => {
+    getToDoAPI();
+  }, [appId]);
 
   const addToDo = () => {
     if (!text) {
       return;
     }
 
-    const newToDos = {
-      ...toDos,
-      [Date.now()]: {
-        text,
-        isCompleted: false,
-      },
-    };
-    setToDos(newToDos);
-    updateToDOAPI(newToDos);
+    const newToDos = { ...toDos, [Date.now()]: { text, isCompleted: false } };
+    updateToDoAPI(newToDos);
     setText("");
   };
+
+  // const completedToDos =
 
   const deleteToDos = (key) => {
     const newToDos = { ...toDos };
     delete newToDos[key];
-    setToDos(newToDos);
-    updateToDOAPI(newToDos);
+    updateToDoAPI(newToDos);
   };
+
   return (
     <View style={styles.calendar}>
       <View
@@ -80,9 +90,18 @@ export default function Calendar() {
       </View>
 
       <ScrollView style={styles.flexbox}>
-        {!toDos ? (
-          <View>
-            <Text style={styles.todoList}>일정이 없어요!</Text>
+        {Object.keys(toDos).length === 0 ? (
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              height: 160,
+            }}
+          >
+            <Text style={styles.todoItem}>
+              {`                           일정이 없어요. 
+오늘 같은 날은 편하게 쉬어보시는건 어떨까요 ?`}
+            </Text>
           </View>
         ) : (
           <View>
