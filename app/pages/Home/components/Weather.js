@@ -5,7 +5,7 @@ import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BASE_IP } from "../../../service";
+import { getAppId, BASE_IP } from "../../../service";
 
 const icons = {
   Clouds: "cloudy",
@@ -24,16 +24,19 @@ export default function Weather() {
   const [ok, setOk] = useState(true);
   const navigation = useNavigation();
 
-  const appId = useRef("");
+  const [appId, setAppId] = useState("");
 
   const weatherAPI = async () => {
-    const res = await axios.get(
-      `${BASE_IP}/weather/getWeather?appId=${appId.current}`
-    );
+    console.log("weatherAPI start", appId);
+    const res = await axios.get(`${BASE_IP}/weather/getWeather?appId=${appId}`);
+    console.log("res.data===", res.data);
+
     const json = await JSON.parse(res.data.weatherInfo);
     const convertData = convertUTCToTime(json.daily);
+
     setDays(convertData);
     setCity(res.data.city);
+    console.log("weatherAPI end", appId);
   };
 
   const setLocation = async () => {
@@ -58,14 +61,10 @@ export default function Weather() {
   // }, []); ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
 
   useEffect(() => {
-    weatherAPI();
     // AsyncStorage.clear(); // 사용금지
-    getAppId();
+    getAppId(setAppId);
+    weatherAPI();
   }, []);
-
-  const getAppId = async () => {
-    appId.current = await AsyncStorage.getItem("@storage_Id");
-  };
 
   const reloadWeather = () => {
     setLocation();

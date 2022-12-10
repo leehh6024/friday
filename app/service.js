@@ -10,3 +10,6 @@ export const getAppId = async (setter) => {
 export const BASE_IP = "http://172.30.1.47:8080";
 
 // 1988 IP => 172.30.1.47
+
+// console.log("weatherAPI start", appId);
+// console.log("weatherAPI end", appId);
