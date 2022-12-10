@@ -13,10 +13,8 @@ export default function NewsTab() {
     <View>
       {news.map((newses, index) => {
         return (
-          <View style={styles.contextBox}>
-            <Text key={index} style={styles.contentText}>
-              {newses}
-            </Text>
+          <View key={index} style={styles.contextBox}>
+            <Text style={styles.contentText}>{newses}</Text>
           </View>
         );
       })}

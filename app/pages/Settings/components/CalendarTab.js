@@ -13,10 +13,8 @@ export default function CalendarTab() {
     <View>
       {calendar.map((calendars, index) => {
         return (
-          <View style={styles.contextBox}>
-            <Text key={index} style={styles.contentText}>
-              {calendars}
-            </Text>
+          <View key={index} style={styles.contextBox}>
+            <Text style={styles.contentText}>{calendars}</Text>
           </View>
         );
       })}

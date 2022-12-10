@@ -6,6 +6,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -31,7 +32,6 @@ export default function Calendar() {
   });
 
   const addToDo = () => {
-    console.log("addToDos!");
     if (!text) {
       return;
     }
@@ -45,7 +45,6 @@ export default function Calendar() {
     };
     setToDos(newToDos);
     updateToDOAPI(newToDos);
-    console.log(newToDos);
     setText("");
   };
 
@@ -68,7 +67,7 @@ export default function Calendar() {
           style={{ ...styles.title, paddingHorizontal: 20 }}
           onPress={() => navigation.navigate("CalendarDetails")}
         >
-          오늘 일정
+          이현호 님의 일정
         </Text>
         <TextInput
           style={styles.inputTodo}
@@ -79,21 +78,30 @@ export default function Calendar() {
           onSubmitEditing={addToDo}
         />
       </View>
+
       <ScrollView style={styles.flexbox}>
-        {Object.keys(toDos).map((key, idx) => (
-          <View key={idx} style={styles.todoList}>
-            <Text style={styles.todoItem}>ㅇ {toDos[key].text}</Text>
-            <View>
-              <TouchableOpacity onPress={() => deleteToDos(key)}>
-                <MaterialCommunityIcons
-                  name="trash-can-outline"
-                  color="teal"
-                  style={{ fontSize: 28 }}
-                />
-              </TouchableOpacity>
-            </View>
+        {!toDos ? (
+          <View>
+            <Text style={styles.todoList}>일정이 없어요!</Text>
           </View>
-        ))}
+        ) : (
+          <View>
+            {Object.keys(toDos).map((key, idx) => (
+              <View key={idx} style={styles.todoList}>
+                <Text style={styles.todoItem}>ㅇ {toDos[key].text}</Text>
+                <View>
+                  <TouchableOpacity onPress={() => deleteToDos(key)}>
+                    <MaterialCommunityIcons
+                      name="trash-can-outline"
+                      color="teal"
+                      style={{ fontSize: 28 }}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -127,7 +135,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
     marginRight: 60,
-    width: "60%",
+    width: "50%",
   },
   todoList: {
     display: "flex",

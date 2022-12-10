@@ -25,7 +25,6 @@ export default function BusDetails() {
 
   useEffect(() => {
     getAppId(setAppId);
-    // console.log("numOfBus", numOfBus);
   }, []);
 
   const [lineNumber, setLineNumber] = useState("");
@@ -38,8 +37,6 @@ export default function BusDetails() {
     const res = await axios.get(
       `${BASE_IP}/bus/busList?lineNumber=${inputBus}`
     );
-    console.log(res.data);
-    // res.data.forEach((value) => console.log(value));
     const busNum = res.data[0].routeName;
     const busStation = res.data[0].routeId;
     setNumOfBus(res.data);
@@ -53,7 +50,6 @@ export default function BusDetails() {
       // `http://172.16.239.139:8080/bus/busStation?routeId=${"200000085"}`
     );
     setBusStations(res.data);
-    console.log(res.data);
   };
 
   const createBusInfo = async (stationName, stationId, staOrder) => {
@@ -160,15 +156,6 @@ export default function BusDetails() {
           </ScrollView>
         </View>
       </View>
-      {/* <View style={styles.busNum}>
-          <Text>
-            {numOfBus.map((stationList, index) => (
-              <View key={index} style={styles.inputBusNum}>
-                {stationList.}
-              </View>
-            ) )}
-          </Text>
-        </View> */}
       <View style={styles.footer}>
         <BottomBar />
       </View>

@@ -15,14 +15,9 @@ export default function News() {
 
   const getNewsAPI = async () => {
     const res = await axios.get(`${BASE_IP}/news/getNews?category=all`);
-    // console.log("news", res.data.result);
     const json = JSON.parse(res.data.result);
-    // console.log("JSON DATA", JSON.parse(res.data.result));
-    console.log("article length", json.articles.length);
     json.articles.forEach((value) => {
       value.url;
-      console.log("value title", value.title);
-      console.log("value url", value.url);
     });
     setNews(json.articles);
   };
@@ -69,7 +64,7 @@ export default function News() {
         <Text style={styles.article}>안녕하소</Text>
 
         {news.map((article, index) => (
-          <Text onPress={() => Linking.openURL(article.url)}>
+          <Text key={index} onPress={() => Linking.openURL(article.url)}>
             {article.title}
           </Text>
         ))}

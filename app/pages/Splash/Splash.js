@@ -33,10 +33,8 @@ export default function Splash() {
   const getData = async () => {
     const value = await AsyncStorage.getItem("@storage_Id");
 
-    console.log("value", value);
     if (value == null) {
     } else {
-      console.log("data 존재");
       setAppId(value);
       const setHome = setTimeout(() => {
         navigation.navigate("Home", appId);

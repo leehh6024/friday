@@ -13,10 +13,8 @@ export default function BusTab() {
     <View>
       {bus.map((buses, index) => {
         return (
-          <View style={styles.contextBox}>
-            <Text key={index} style={styles.contentText}>
-              {buses}
-            </Text>
+          <View key={index} style={styles.contextBox}>
+            <Text style={styles.contentText}>{buses}</Text>
           </View>
         );
       })}

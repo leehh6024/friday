@@ -12,10 +12,8 @@ export default function WeatherTab() {
     <View>
       {weather.map((weathers, index) => {
         return (
-          <View style={styles.contextBox}>
-            <Text key={index} style={styles.contentText}>
-              {weathers}
-            </Text>
+          <View key={index} style={styles.contextBox}>
+            <Text style={styles.contentText}>{weathers}</Text>
           </View>
         );
       })}

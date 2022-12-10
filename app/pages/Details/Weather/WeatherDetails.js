@@ -51,16 +51,12 @@ export default function WeatherDetails() {
   ];
 
   const weatherAPI = async () => {
-    console.log("getWeather: appId: ", appId);
     const res = await axios.get(
       `${BASE_IP}/weather/getWeather?appId=${appId.current}`
     );
     const json = await JSON.parse(res.data.weatherInfo);
     const convertData = convertUTCToTime(json.daily);
     setDays(convertData);
-    // console.log(json.daily);
-    // console.log(typeof json.daily);
-    // console.log(res.data.city);
     setCity(res.data.city);
   };
 
@@ -74,8 +70,6 @@ export default function WeatherDetails() {
         { latitude, longitude },
         { useGoogleMaps: false }
       );
-      // setCity(location[0].city);
-      console.log("done");
       createWeatherAPI(latitude, longitude, location[0].city);
     }
     weatherAPI();
@@ -88,7 +82,6 @@ export default function WeatherDetails() {
       longitude,
       city,
     });
-    console.log("createWeather: ", res.data.status);
   };
 
   useEffect(() => {

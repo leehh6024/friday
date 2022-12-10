@@ -38,11 +38,6 @@ export default function Settings() {
     { key: "5", value: "오후 18:00 - 오후 20:00" },
     { key: "6", value: "사용 안함" },
   ];
-  // useEffect(() => {
-  //   if (selected) {
-  //     console.log("selected: ", selected);
-  //   }
-  // });
 
   return (
     <View style={styles.container}>

@@ -27,16 +27,12 @@ export default function Weather() {
   const appId = useRef("");
 
   const weatherAPI = async () => {
-    console.log("getWeather: appId: ", appId);
     const res = await axios.get(
       `${BASE_IP}/weather/getWeather?appId=${appId.current}`
     );
     const json = await JSON.parse(res.data.weatherInfo);
     const convertData = convertUTCToTime(json.daily);
     setDays(convertData);
-    // console.log(json.daily);
-    // console.log(typeof json.daily);
-    // console.log(res.data.city);
     setCity(res.data.city);
   };
 
@@ -50,8 +46,6 @@ export default function Weather() {
         { latitude, longitude },
         { useGoogleMaps: false }
       );
-      // setCity(location[0].city);
-      console.log("done");
       createWeatherAPI(latitude, longitude, location[0].city);
     }
     weatherAPI();
@@ -84,7 +78,6 @@ export default function Weather() {
       longitude,
       city,
     });
-    console.log("createWeather: ", res.data.status);
   };
 
   const storeData = async (value) => {
@@ -114,26 +107,6 @@ export default function Weather() {
     "금요일",
     "토요일",
   ];
-
-  // const idTestAPI = async () => {
-  //   const value = await AsyncStorage.getItem("@storage_Id");
-
-  //   console.log("value", value);
-  //   if (value == null) {
-  //     const id = Date.now().toString();
-
-  //     appId.current = id;
-  //     const response = await axios.post(BASE_IP + "/user/addUser", {
-  //       macId: "E4:5F:01:D6:0F:91",
-  //       appId: id,
-  //     });
-  //     console.log("idTest : ", response.data.status);
-  //     storeData(id);
-  //   } else {
-  //     console.log("appId is OK");
-  //     appId.current = value;
-  //   }
-  // };
 
   return (
     <View>
@@ -261,24 +234,3 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
-
-// const getCoordinate = async () => {
-//   const res = await getWeatherAPI();
-//   console.log(res.data);
-// };
-
-// const getWeatherAPI = async () => {
-//   const res = await axios.get(
-//     "http://172.30.1.72:8080/weather/get-coordinate"
-//   );
-//   console.log(res.data);
-//   return res;
-// };
-
-// const testAPI = async () => {
-//   const res = await axios.get("http://172.30.1.72:8080/user/default");
-//   console.log(res.data);
-// };
-
-// 첫 실행시 Id 값 조회, 없으면 => date 저장하게하고, 있으면 => main으로 value를 props로 전달시켜주
-// 있으면 서버랑 통신할 Id로 사용.
