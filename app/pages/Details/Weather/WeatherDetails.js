@@ -23,9 +23,9 @@ const icons = {
 
 export default function WeatherDetails() {
   const [city, setCity] = useState("Loading...");
-  const [loading, setLoading] = useState(false);
   const [days, setDays] = useState([]);
-  const [ok, setOk] = useState(true);
+  const [currentTemp, setCurrentTemp] = useState(0);
+
   const navigation = useNavigation();
 
   const [appId, setAppId] = useState("");
@@ -53,7 +53,10 @@ export default function WeatherDetails() {
   const weatherAPI = async () => {
     const res = await axios.get(`${BASE_IP}/weather/getWeather?appId=${appId}`);
     const json = await JSON.parse(res.data.weatherInfo);
+    const current = parseFloat(json.current.temp).toFixed(1);
+    setCurrentTemp(current);
     const convertData = convertUTCToTime(json.daily);
+
     setDays(convertData);
     setCity(res.data.city);
   };
@@ -74,7 +77,7 @@ export default function WeatherDetails() {
   };
 
   const createWeatherAPI = async (latitude, longitude, city) => {
-    const res = await axios.post(BASE_IP + "/weather/createWeather", {
+    const res = await axios.post(`${BASE_IP}/weather/createWeather`, {
       appId: appId,
       latitude,
       longitude,
@@ -86,6 +89,10 @@ export default function WeatherDetails() {
     getAppId(setAppId);
     weatherAPI();
   }, []);
+
+  useEffect(() => {
+    weatherAPI();
+  }, [appId]);
 
   return (
     <View style={styles.container}>
@@ -112,14 +119,6 @@ export default function WeatherDetails() {
                     }`}
                   </Text>
                   <View>
-                    {/* <View>
-                <ActivityIndicator
-                  animating={loading}
-                  color="#A3C1C6"
-                  size="small"
-                  style={{ marginTop: 30 }}
-                />
-              </View> */}
                     <View style={styles.flexbox1}>
                       <Fontisto
                         name={icons[day.weather[0].main]}

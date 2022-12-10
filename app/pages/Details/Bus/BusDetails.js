@@ -85,6 +85,7 @@ export default function BusDetails() {
             <TextInput
               style={styles.inputBox}
               onChangeText={(text) => setInputBus(text)}
+              onSubmitEditing={getBusData}
               placeholder="버스 번호를 검색해주세요."
             />
             <FontAwesome5

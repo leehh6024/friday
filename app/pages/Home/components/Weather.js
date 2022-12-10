@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
 import { MaterialCommunityIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -20,9 +20,7 @@ const icons = {
 export default function Weather() {
   const [city, setCity] = useState("Loading...");
   const [days, setDays] = useState([]);
-  const [ok, setOk] = useState(true);
-  const navigation = useNavigation();
-  const [isComplete, setIsComplete] = useState(false);
+  const [currentTemp, setCurrentTemp] = useState(0);
 
   const [appId, setAppId] = useState("");
 
@@ -30,6 +28,8 @@ export default function Weather() {
     const res = await axios.get(`${BASE_IP}/weather/getWeather?appId=${appId}`);
 
     const json = await JSON.parse(res.data.weatherInfo);
+    const current = parseFloat(json.current.temp).toFixed(1);
+    setCurrentTemp(current);
     const convertData = convertUTCToTime(json.daily);
 
     setDays(convertData);
@@ -153,9 +153,7 @@ export default function Weather() {
                 />
                 <View>
                   <Text style={styles.city}>{city}</Text>
-                  <Text style={styles.temp}>
-                    {parseFloat(days[0].temp.day).toFixed(1)}º
-                  </Text>
+                  <Text style={styles.temp}>{currentTemp}º</Text>
                 </View>
                 <View>
                   <Text style={styles.feels_like}>{`  체감온도`}</Text>
