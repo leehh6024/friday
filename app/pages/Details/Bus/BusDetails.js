@@ -146,6 +146,7 @@ export default function BusDetails() {
                               },
                             ]
                           );
+                          navigation.reset({ routes: [{ name: "Home" }] });
                         }}
                       >
                         {busStation.stationName}

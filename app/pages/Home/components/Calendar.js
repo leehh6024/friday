@@ -56,6 +56,10 @@ export default function Calendar() {
 
   useEffect(() => {
     getAppId(setAppId);
+    const todoInterval = setInterval(() => {
+      getToDoAPI();
+    }, 2000);
+    return () => clearInterval(todoInterval);
   }, []);
 
   useEffect(() => {

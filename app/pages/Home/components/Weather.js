@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
 import { MaterialCommunityIcons, Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -22,6 +22,7 @@ export default function Weather() {
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
   const navigation = useNavigation();
+  const [isComplete, setIsComplete] = useState(false);
 
   const [appId, setAppId] = useState("");
 
@@ -45,9 +46,10 @@ export default function Weather() {
         { latitude, longitude },
         { useGoogleMaps: false }
       );
+      console.log(latitude, longitude);
       createWeatherAPI(latitude, longitude, location[0].city);
     }
-    weatherAPI();
+    setTimeout(() => weatherAPI(), 2000);
   };
 
   useEffect(() => {
@@ -56,12 +58,13 @@ export default function Weather() {
   }, []);
 
   const reloadWeather = () => {
+    setDays([]);
     setLocation();
   };
 
   const createWeatherAPI = async (latitude, longitude, city) => {
     console.log("create weather");
-    const res = await axios.post(`${BASE_IP} + "/weather/createWeather`, {
+    const res = await axios.post(`${BASE_IP}/weather/createWeather`, {
       appId: appId,
       latitude,
       longitude,
@@ -101,7 +104,13 @@ export default function Weather() {
     <View>
       <View style={styles.weather}>
         {days.length === 0 ? (
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 50,
+            }}
+          >
             <Text style={{ color: "#555555", fontSize: 16, fontWeight: "800" }}>
               오늘 날씨 알려드릴게요, 잠시만 기다려주세요!
             </Text>

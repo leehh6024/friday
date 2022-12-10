@@ -36,7 +36,8 @@ export default function Splash() {
     } else {
       setAppId(value);
       const setHome = setTimeout(() => {
-        navigation.navigate("Home", appId);
+        // navigation.navigate("Home", appId);
+        navigation.reset({ routes: [{ name: "Home" }] });
       }, 5000);
     }
     // console.log(value);

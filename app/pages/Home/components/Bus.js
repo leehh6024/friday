@@ -31,11 +31,12 @@ export default function Bus() {
   };
 
   useEffect(() => {
+    console.log("use effect");
     getAppId(setAppId);
-    // const busInterval = setInterval(() => {
-    //   getBusArrivalAPI();
-    // }, 2000);
-    // return () => clearInterval(busInterval);
+    const busInterval = setInterval(() => {
+      getBusArrivalAPI();
+    }, 2000);
+    return () => clearInterval(busInterval);
   }, []);
 
   useEffect(() => {
