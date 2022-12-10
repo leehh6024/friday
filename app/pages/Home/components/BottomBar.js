@@ -56,17 +56,17 @@ export default function BottomBar() {
         </Text>
       </View>
       <View style={styles.box}>
-        <Entypo
-          name="news"
+        <Ionicons
+          name="settings"
           size={32}
           color="#e5e5e5"
-          onPress={() => navigation.navigate("NewsDetails")}
+          onPress={() => navigation.navigate("Settings")}
         />
         <Text
           style={{ color: "#555555", fontWeight: "600", marginTop: 4 }}
           onPress={() => navigation.navigate("NewsDetails")}
         >
-          뉴스
+          환경설정
         </Text>
       </View>
     </View>

@@ -6,6 +6,7 @@ import {
   ScrollView,
   TextInput,
   Dimensions,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, FontAwesome5, Feather } from "@expo/vector-icons";
@@ -90,7 +91,9 @@ export default function BusDetails() {
               name="search"
               size={28}
               color="#555555"
-              onPress={() => getBusData()}
+              onPress={() => {
+                getBusData();
+              }}
             />
           </View>
         </View>
@@ -99,10 +102,10 @@ export default function BusDetails() {
             return (
               <View key={index} style={styles.busNumList}>
                 <Text
-                  style={styles.busNumItem}
+                  style={{ ...styles.busNumItem, color: "red" }}
                   onPress={() => getStationListAPI(value.routeId)}
                 >
-                  <FontAwesome5 name="bus" size={20} color="black" />
+                  <FontAwesome5 name="bus" size={20} color="red" />
                   {value.routeName}
                 </Text>
                 <Text
@@ -128,13 +131,22 @@ export default function BusDetails() {
                     <View>
                       <Text
                         style={styles.busStationItem}
-                        onPress={() =>
+                        onPress={() => {
                           createBusInfo(
                             busStation.stationName,
                             busStation.stationId,
                             busStation.stationSeq
-                          )
-                        }
+                          );
+                          Alert.alert(
+                            `${busStation.stationName}\n선택이 완료되었습니다.`,
+                            "",
+                            [
+                              {
+                                text: "확인",
+                              },
+                            ]
+                          );
+                        }}
                       >
                         {busStation.stationName}
                       </Text>
@@ -144,7 +156,7 @@ export default function BusDetails() {
                         position: "absolute",
                         left: -10,
                         backgroundColor: "#eeeeee",
-                        color: "teal",
+                        color: "red",
                       }}
                       name="arrow-down-circle"
                       size={18}
@@ -256,7 +268,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     marginHorizontal: 6,
     borderLeftWidth: 2,
-    borderLeftColor: "teal",
+    borderLeftColor: "red",
     borderBottomWidth: 1,
     borderBottomColor: "#e2e2e2",
 

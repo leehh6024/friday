@@ -20,18 +20,28 @@ export default function Bus() {
     }
     const res = await axios.get(`${BASE_IP}/bus/busArrival?appId=${appId}`);
     const json = res.data;
-    setBusArrivalTime(json.arrivalInfo[0].predictTime1);
+    if (json.arrivalInfo.length === 0) {
+      setBusArrivalTime("버스 도착 정보가 없습니다!");
+      return;
+    }
+    setBusArrivalTime(`${json.arrivalInfo[0].predictTime1} 분 후`);
     setBusStationName(json.stationName);
     setBusLineNumber(json.lineNumber);
+    console.log(json.stationName);
   };
 
   useEffect(() => {
     getAppId(setAppId);
+    // const busInterval = setInterval(() => {
+    //   getBusArrivalAPI();
+    // }, 2000);
+    // return () => clearInterval(busInterval);
   }, []);
 
   useEffect(() => {
     getBusArrivalAPI();
   }, [appId]);
+
   return (
     <View
       style={{
@@ -58,7 +68,15 @@ export default function Bus() {
               <Ionicons name="bus-sharp" size={20} color="red" />
               {busLineNumber}
             </Text>
-            <Text style={styles.info}>{busArrivalTime} 분 후</Text>
+            <Text
+              style={{
+                ...styles.info,
+                fontSize:
+                  busArrivalTime === "버스 도착 정보가 없습니다!" ? 14 : 16,
+              }}
+            >
+              {busArrivalTime}
+            </Text>
           </View>
         </View>
       </View>

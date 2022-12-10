@@ -8,7 +8,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  FontAwesome5,
+  MaterialCommunityIcons,
+  Feather,
+} from "@expo/vector-icons";
 import { getAppId } from "../../../service";
 import axios from "axios";
 import { BASE_IP } from "../../../service";
@@ -33,10 +37,21 @@ export default function Calendar() {
       return;
     }
     const res = await axios.get(`${BASE_IP}/todo/getToDo?appId=${appId}`);
-    const json = JSON.parse(res.data.todoInfo.todos);
+    console.log(res.data.todoInfo.todos);
+    console.log(typeof res.data.todoInfo.todos);
+    const convertDoubleQoute = res.data.todoInfo.todos.replaceAll("'", '"');
+    const convertBoolFalse = convertDoubleQoute.replaceAll("False", "false");
+    const convertBoolTrue = convertBoolFalse.replaceAll("True", "true");
+    console.log(convertBoolTrue);
+    const json = JSON.parse(convertBoolTrue);
+
+    console.log(json);
+    console.log(typeof json);
+
+    // const json = JSON.parse(res.data.todoInfo.todos);
     setToDos(json);
-    // console.log(Object.keys(json)[0]);
-    // console.log(typeof Object.keys(json)[0]);
+    console.log(Object.keys(json)[0]);
+    console.log(typeof Object.keys(json)[0]);
   };
 
   useEffect(() => {
@@ -58,6 +73,12 @@ export default function Calendar() {
   };
 
   // const completedToDos =
+
+  const completeToDo = (key) => {
+    const newToDos = { ...toDos };
+    newToDos[key].isCompleted = !newToDos[key].isCompleted;
+    updateToDoAPI(newToDos);
+  };
 
   const deleteToDos = (key) => {
     const newToDos = { ...toDos };
@@ -101,15 +122,35 @@ export default function Calendar() {
             }}
           >
             <Text style={styles.todoItem}>
-              {`                           일정이 없어요. 
-오늘 같은 날은 편하게 쉬어보시는건 어떨까요 ?`}
+              {`                   일정이 없네요. 
+오늘은 편하게 쉬어보시는건 어떨까요 ?`}
             </Text>
           </View>
         ) : (
           <View>
             {Object.keys(toDos).map((key, idx) => (
               <View key={idx} style={styles.todoList}>
-                <Text style={styles.todoItem}>ㅇ {toDos[key].text}</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <TouchableOpacity onPress={() => completeToDo(key)}>
+                    <Feather
+                      name={toDos[key].isCompleted ? "check-square" : "square"}
+                      color="#A3C1C6"
+                      style={{ fontSize: 22, marginRight: 8, marginTop: -4 }}
+                    />
+                  </TouchableOpacity>
+                  <Text
+                    style={{
+                      ...styles.todoItem,
+                      color: toDos[key].isCompleted ? "#c0c0c0" : "#555555",
+                      textDecorationLine: toDos[key].isCompleted
+                        ? "line-through"
+                        : "none",
+                      textDecorationColor: "#A3C1C6",
+                    }}
+                  >
+                    {toDos[key].text}
+                  </Text>
+                </View>
                 <View>
                   <TouchableOpacity onPress={() => deleteToDos(key)}>
                     <MaterialCommunityIcons
@@ -131,7 +172,7 @@ const styles = StyleSheet.create({
   calendar: {
     backgroundColor: "#eeeeee",
     borderRadius: 25,
-    height: 220,
+    height: 210,
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginTop: 10,
@@ -163,7 +204,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 4,
+    marginBottom: 14,
     borderBottomWidth: 1.5,
     borderBottomColor: "#e2e2e2",
   },

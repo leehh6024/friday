@@ -60,6 +60,7 @@ export default function Weather() {
   };
 
   const createWeatherAPI = async (latitude, longitude, city) => {
+    console.log("create weather");
     const res = await axios.post(`${BASE_IP} + "/weather/createWeather`, {
       appId: appId,
       latitude,
@@ -111,7 +112,7 @@ export default function Weather() {
           >
             <Text
               style={styles.title}
-              // onPress={() => AsyncStorage.clear()} // 사용금지
+              onPress={() => AsyncStorage.clear()} // 사용금지
             >
               <MaterialCommunityIcons
                 name="weather-partly-cloudy"

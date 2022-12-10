@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,6 @@ import {
   Button,
   Dimensions,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -38,18 +37,24 @@ export default function Splash() {
       setAppId(value);
       const setHome = setTimeout(() => {
         navigation.navigate("Home", appId);
-      }, 1000);
+      }, 5000);
     }
+    // console.log(value);
   };
-
-  // 유저가 앱을 키자마자 실행 될 함수 => 1. API에 appId 조회 요청
-  // appId 있으면 => setTimeout(); 이때, 앱 화면은 기본 스플래시 창을 제공
-  // appId 없으면 => <TextInput /> 에 AI스피커의 mac주소를 입력하고,
-  // 서버에 해당 mac주소 전송 및 서버 내의 조회. 조회에 성공하면 Home 화면으로 이동.
 
   useEffect(() => {
     getData();
   }, []);
+
+  const sendData = async () => {
+    const date = Date.now().toString();
+    const res = await axios.post(`${BASE_IP}/user/addUser`, {
+      macId: null,
+      appId: date,
+    });
+
+    await AsyncStorage.setItem("@storage_Id", date);
+  };
 
   return (
     <View style={styles.container}>
@@ -80,8 +85,9 @@ export default function Splash() {
           <TextInput
             style={styles.input}
             placeholder="- 표시를 포함해서 작성해주세요."
+            onSubmitEditing={() => sendData()}
           />
-          <Button title="ID가 있으신가요 ?" onPress={() => setId(true)} />
+          <Button title="ID가 있으신가요 ?" onPress={() => getData()} />
         </View>
       )}
     </View>
