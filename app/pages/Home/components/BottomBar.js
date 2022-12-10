@@ -18,11 +18,11 @@ export default function BottomBar() {
           name="home"
           size={32}
           color="#e5e5e5"
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.reset({ routes: [{ name: "Home" }] })}
         />
         <Text
           style={{ color: "#555555", fontWeight: "600", marginTop: 4 }}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.reset({ routes: [{ name: "Home" }] })}
         >
           홈
         </Text>
@@ -32,11 +32,15 @@ export default function BottomBar() {
           name="partly-sunny-sharp"
           size={32}
           color="#e5e5e5"
-          onPress={() => navigation.navigate("WeatherDetails")}
+          onPress={() =>
+            navigation.reset({ routes: [{ name: "WeatherDetails" }] })
+          }
         />
         <Text
           style={{ color: "#555555", fontWeight: "600", marginTop: 4 }}
-          onPress={() => navigation.navigate("WeatherDetails")}
+          onPress={() =>
+            navigation.reset({ routes: [{ name: "WeatherDetails" }] })
+          }
         >
           날씨
         </Text>

@@ -87,6 +87,7 @@ export default function BusDetails() {
               onChangeText={(text) => setInputBus(text)}
               onSubmitEditing={getBusData}
               placeholder="버스 번호를 검색해주세요."
+              returnKeyType="done"
             />
             <FontAwesome5
               name="search"

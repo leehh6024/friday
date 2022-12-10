@@ -7,7 +7,7 @@ export const getAppId = async (setter) => {
   setter(value);
 };
 
-export const BASE_IP = "http://172.30.1.47:8080";
+export const BASE_IP = "http://192.168.0.35:8080";
 
 // 1988 IP => 172.30.1.47
 
