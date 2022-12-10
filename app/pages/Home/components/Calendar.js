@@ -78,7 +78,7 @@ export default function Calendar() {
           style={{ ...styles.title, paddingHorizontal: 10 }}
           onPress={() => navigation.navigate("CalendarDetails")}
         >
-          <FontAwesome5 name="calendar-alt" size={20} color="#A3C1C6" />
+          <FontAwesome5 name="calendar-alt" size={20} color="#464646" />
           {` 이현호 님의 일정`}
         </Text>
         <TextInput
@@ -114,7 +114,7 @@ export default function Calendar() {
                   <TouchableOpacity onPress={() => deleteToDos(key)}>
                     <MaterialCommunityIcons
                       name="trash-can-outline"
-                      color="#A3C1C6"
+                      color="#464646"
                       style={{ fontSize: 24 }}
                     />
                   </TouchableOpacity>

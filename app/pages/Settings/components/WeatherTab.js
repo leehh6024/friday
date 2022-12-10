@@ -7,6 +7,8 @@ export default function WeatherTab() {
     "오늘 날씨",
     "날씨",
     "오늘 날씨 어때",
+    "웨더",
+    "WEATHER",
   ]);
   return (
     <View>

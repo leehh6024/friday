@@ -8,6 +8,8 @@ export default function NewsTab() {
     "뉴스 브리핑",
     "뉴스 헤드라인",
     "주요뉴스",
+    "오늘 뉴스 소식",
+    "뉴스 소식",
   ]);
   return (
     <View>

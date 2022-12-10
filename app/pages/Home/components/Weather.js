@@ -116,7 +116,7 @@ export default function Weather() {
               <MaterialCommunityIcons
                 name="weather-partly-cloudy"
                 size={22}
-                color="#A3C1C6"
+                color="#464646"
               />
               {`${days[0]?.dt.getMonth() + 1}월 ${days[0]?.dt.getDate()}일 ${
                 date[days[0]?.dt.getDay()]

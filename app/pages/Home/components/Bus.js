@@ -46,8 +46,8 @@ export default function Bus() {
               style={styles.title}
               onPress={() => navigation.navigate("BusDetails")}
             >
-              <Ionicons name="bus-sharp" size={20} color="#A3C1C6" />
-              자주타는 버스
+              <Ionicons name="bus-sharp" size={20} color="#464646" />
+              즐겨찾는 버스
             </Text>
           </View>
           <View style={styles.body}>
@@ -66,9 +66,12 @@ export default function Bus() {
         <View style={styles.day}>
           <View style={styles.header}>
             <Text
-              style={{ ...styles.title, marginTop: 6 }}
+              style={styles.title}
               onPress={() => navigation.navigate("BusDetails")}
-            ></Text>
+            >
+              <Ionicons name="bus-sharp" size={20} color="#464646" />
+              즐겨찾는 버스
+            </Text>
           </View>
           <View style={styles.body}>
             <Text style={styles.station}>정보과학도서관</Text>
@@ -102,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "left",
-    marginTop: 4,
+    marginTop: 13,
   },
   footer: {
     paddingHorizontal: 10,
@@ -120,6 +123,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 10,
   },
-  station: { color: "#555555", fontSize: 17, fontWeight: "800", marginTop: 2 },
-  info: { color: "#555555", fontSize: 17, fontWeight: "800", marginTop: 1 },
+  station: { color: "#555555", fontSize: 16, fontWeight: "800", marginTop: 2 },
+  info: { color: "#555555", fontSize: 20, fontWeight: "800", marginTop: 1 },
 });
