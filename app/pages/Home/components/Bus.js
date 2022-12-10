@@ -14,6 +14,9 @@ export default function Bus() {
   const [busArrivalTime, setBusArrivalTime] = useState("");
 
   const getBusArrivalAPI = async () => {
+    if (appId === "") {
+      return;
+    }
     const res = await axios.get(`${BASE_IP}/bus/busArrival?appId=${appId}`);
     const json = res.data;
     console.log(json);
