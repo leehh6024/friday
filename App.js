@@ -6,7 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import Splash from "./app/pages/Splash/Splash.js";
 import Home from "./app/pages/Home/Home.js";
-import Header from "./app/pages/Home/Header.js";
 import Settings from "./app/pages/Settings/Settings.js";
 import Guide from "./app/pages/Guide/Guide.js";
 
@@ -30,7 +29,6 @@ export default function App() {
       >
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Header" component={Header} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Guide" component={Guide} />
 

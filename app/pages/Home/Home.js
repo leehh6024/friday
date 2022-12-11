@@ -4,8 +4,6 @@ import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-// import Header from "./Header.js";
-// import Body from "./Body.js";
 import Example from "./components/Example.js";
 import Calendar from "./components/Calendar.js";
 import Weather from "./components/Weather.js";
@@ -22,7 +20,6 @@ export default function Home() {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        {/* <Header /> */}
         <Ionicons
           name="ios-settings"
           size={32}
