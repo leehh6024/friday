@@ -6,23 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 export default function Header() {
   const navigation = useNavigation();
 
-  return (
-    <View style={styles.container}>
-      <Ionicons
-        name="ios-settings"
-        size={32}
-        color="#e5e5e5"
-        onPress={() => navigation.navigate("Settings")}
-      />
-      <Text style={styles.appname}>FRIDAY,</Text>
-      <Feather
-        name="help-circle"
-        size={36}
-        color="#e5e5e5"
-        onPress={() => navigation.navigate("Guide")}
-      />
-    </View>
-  );
+  return <View style={styles.container}></View>;
 }
 
 const styles = StyleSheet.create({
