@@ -9,7 +9,7 @@ import Calendar from "./components/Calendar.js";
 import Weather from "./components/Weather.js";
 import Bus from "./components/Bus.js";
 import News from "./components/News.js";
-import Footer from "./Footer.js";
+import BottomBar from "./components/BottomBar.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -46,7 +46,7 @@ export default function Home() {
       </View>
 
       <View style={styles.footer}>
-        <Footer />
+        <BottomBar />
       </View>
     </View>
   );
