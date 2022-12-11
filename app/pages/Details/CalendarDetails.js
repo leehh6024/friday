@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import BottomBar from "../../Home/components/BottomBar.js";
+import BottomBar from "../Home/components/BottomBar.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 

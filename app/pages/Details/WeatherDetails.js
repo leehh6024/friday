@@ -4,10 +4,10 @@ import * as Location from "expo-location";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-import BottomBar from "../../Home/components/BottomBar.js";
+import BottomBar from "../Home/components/BottomBar.js";
 
 import axios from "axios";
-import { BASE_IP, getAppId } from "../../../service.js";
+import { BASE_IP, getAppId } from "../../service.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 

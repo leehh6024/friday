@@ -10,13 +10,13 @@ import Settings from "./app/pages/Settings/Settings.js";
 import Guide from "./app/pages/Guide/Guide.js";
 
 import Calendar from "./app/pages/Home/components/Calendar.js";
-import CalendarDetails from "./app/pages/Details/Calendar/CalendarDetails.js";
+import CalendarDetails from "./app/pages/Details/CalendarDetails.js";
 import Weather from "./app/pages/Home/components/Weather.js";
-import WeatherDetails from "./app/pages/Details/Weather/WeatherDetails.js";
+import WeatherDetails from "./app/pages/Details/WeatherDetails.js";
 import Bus from "./app/pages/Home/components/Bus.js";
-import BusDetails from "./app/pages/Details/Bus/BusDetails.js";
+import BusDetails from "./app/pages/Details/BusDetails.js";
 import News from "./app/pages/Home/components/News.js";
-import NewsDetails from "./app/pages/Details/News/NewsDetails.js";
+import NewsDetails from "./app/pages/Details/NewsDetails.js";
 
 const Stack = createNativeStackNavigator();
 

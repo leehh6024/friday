@@ -11,9 +11,9 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, FontAwesome5, Feather } from "@expo/vector-icons";
 
-import BottomBar from "../../Home/components/BottomBar.js";
+import BottomBar from "../Home/components/BottomBar.js";
 import axios from "axios";
-import { BASE_IP, getAppId } from "../../../service.js";
+import { BASE_IP, getAppId } from "../../service.js";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
