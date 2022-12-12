@@ -29,10 +29,7 @@ export default function BusDetails() {
   }, []);
 
   const [lineNumber, setLineNumber] = useState("");
-  const [stationName, setStationName] = useState("");
-  const [stationId, setStationId] = useState("");
   const [routeId, setRouteId] = useState("");
-  const [staOrder, setStaOrder] = useState("");
 
   const getBusListAPI = async () => {
     const res = await axios.get(
@@ -46,10 +43,7 @@ export default function BusDetails() {
   };
 
   const getStationListAPI = async (routeId) => {
-    const res = await axios.get(
-      `${BASE_IP}/bus/busStation?routeId=${routeId}`
-      // `http://172.16.239.139:8080/bus/busStation?routeId=${"200000085"}`
-    );
+    const res = await axios.get(`${BASE_IP}/bus/busStation?routeId=${routeId}`);
     setBusStations(res.data);
   };
 
@@ -187,7 +181,6 @@ const styles = StyleSheet.create({
   header: {
     flex: 0.3,
     backgroundColor: "#B9CFDF",
-    // color: "#A3C1C6",
     color: "white",
     width: SCREEN_WIDTH,
     flexDirection: "row",
