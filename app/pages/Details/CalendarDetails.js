@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   header: {
     flex: 0.3,
     backgroundColor: "#B9CFDF",
-    // color: "#A3C1C6",
     color: "white",
     width: SCREEN_WIDTH,
     flexDirection: "row",
