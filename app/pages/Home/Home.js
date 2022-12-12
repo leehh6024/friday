@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -10,8 +10,6 @@ import Weather from "./components/Weather.js";
 import Bus from "./components/Bus.js";
 import News from "./components/News.js";
 import BottomBar from "./components/BottomBar.js";
-
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export default function Home() {
   const navigation = useNavigation();
@@ -69,12 +67,10 @@ const styles = StyleSheet.create({
   body: {
     flex: 2.0,
     backgroundColor: "#A3C1C6",
-    width: SCREEN_WIDTH,
   },
   footer: {
     flex: 0.3,
     backgroundColor: "#B9CFDF",
-    width: SCREEN_WIDTH,
   },
 
   appname: {
