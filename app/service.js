@@ -6,3 +6,4 @@ export const getAppId = async (setter) => {
 };
 
 export const BASE_IP = "http://192.168.0.35:8080";
+// My Home "skylife"
