@@ -82,9 +82,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
-    // backgroundColor: "#eeeeee",
-    // borderRadius: 10,
-    // width: "20%",
-    // height: 70,
   },
 });
