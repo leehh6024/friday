@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 export default function Example() {
   return (
     <View style={styles.ex}>
@@ -22,7 +21,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 6,
   },
   exText: {
-    width: SCREEN_WIDTH,
     color: "#A3C1C6",
     fontWeight: "800",
     fontSize: 24,

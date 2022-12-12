@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
 import { MaterialCommunityIcons, Fontisto, Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAppId, BASE_IP } from "../../../service";

@@ -13,9 +13,8 @@ import {
   MaterialCommunityIcons,
   Feather,
 } from "@expo/vector-icons";
-import { getAppId } from "../../../service";
+import { BASE_IP, getAppId } from "../../../service";
 import axios from "axios";
-import { BASE_IP } from "../../../service";
 
 export default function Calendar() {
   const [appId, setAppId] = useState("");
@@ -48,7 +47,6 @@ export default function Calendar() {
     console.log(json);
     console.log(typeof json);
 
-    // const json = JSON.parse(res.data.todoInfo.todos);
     setToDos(json);
     console.log(Object.keys(json)[0]);
     console.log(typeof Object.keys(json)[0]);
@@ -75,8 +73,6 @@ export default function Calendar() {
     updateToDoAPI(newToDos);
     setText("");
   };
-
-  // const completedToDos =
 
   const completeToDo = (key) => {
     const newToDos = { ...toDos };
