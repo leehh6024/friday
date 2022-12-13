@@ -5,5 +5,8 @@ export const getAppId = async (setter) => {
   setter(value);
 };
 
-export const BASE_IP = "http://192.168.0.35:8080";
 // My Home "skylife"
+// export const BASE_IP = "http://192.168.0.35:8080";
+
+// 영민 Home
+export const BASE_IP = "http://172.30.1.48:8080";

@@ -72,7 +72,7 @@ export default function Splash() {
         />
         <Text style={styles.appName}>FRIDAY,</Text>
       </View>
-      {appId !== "" ? (
+      {appId === "" ? (
         <View style={styles.footer}>
           <Text style={styles.text}>
             비서를 호출하는 중입니다. 잠시만 기다려주세요...
