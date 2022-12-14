@@ -35,16 +35,21 @@ export default function BusDetails() {
     const res = await axios.get(
       `${BASE_IP}/bus/busList?lineNumber=${inputBus}`
     );
-    const busNum = res.data[0].routeName;
-    const busStation = res.data[0].routeId;
-    setNumOfBus(res.data);
+    const busNum = res.data.busList[0].routeName;
+    const busStation = res.data.busList[0].routeId;
+    setNumOfBus(res.data.busList);
     setRouteId(busStation.toString());
     setLineNumber(inputBus.toString());
   };
 
   const getStationListAPI = async (routeId) => {
     const res = await axios.get(`${BASE_IP}/bus/busStation?routeId=${routeId}`);
-    setBusStations(res.data);
+    console.log("================");
+    console.log(res.data.busStationList);
+    // console.log(res.data.busList[0].routeName);
+    // console.log(res.data.busList[0].routeId);
+    console.log("================");
+    setBusStations(res.data.busStationList);
   };
 
   const createBusInfo = async (stationName, stationId, staOrder) => {
