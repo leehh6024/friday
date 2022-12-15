@@ -27,11 +27,9 @@ export default function Bus() {
     setBusArrivalTime(`${json.arrivalInfo[0].predictTime1} 분 후`);
     setBusStationName(json.stationName);
     setBusLineNumber(json.lineNumber);
-    console.log(json.stationName);
   };
 
   useEffect(() => {
-    console.log("use effect");
     getAppId(setAppId);
     const busInterval = setInterval(() => {
       getBusArrivalAPI();
