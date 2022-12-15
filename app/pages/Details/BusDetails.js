@@ -44,11 +44,6 @@ export default function BusDetails() {
 
   const getStationListAPI = async (routeId) => {
     const res = await axios.get(`${BASE_IP}/bus/busStation?routeId=${routeId}`);
-    console.log("================");
-    console.log(res.data.busStationList);
-    // console.log(res.data.busList[0].routeName);
-    // console.log(res.data.busList[0].routeId);
-    console.log("================");
     setBusStations(res.data.busStationList);
   };
 
