@@ -36,20 +36,12 @@ export default function Calendar() {
       return;
     }
     const res = await axios.get(`${BASE_IP}/todo/getToDo?appId=${appId}`);
-    console.log(res.data.todoInfo.todos);
-    console.log(typeof res.data.todoInfo.todos);
     const convertDoubleQoute = res.data.todoInfo.todos.replaceAll("'", '"');
     const convertBoolFalse = convertDoubleQoute.replaceAll("False", "false");
     const convertBoolTrue = convertBoolFalse.replaceAll("True", "true");
-    console.log(convertBoolTrue);
     const json = JSON.parse(convertBoolTrue);
 
-    console.log(json);
-    console.log(typeof json);
-
     setToDos(json);
-    console.log(Object.keys(json)[0]);
-    console.log(typeof Object.keys(json)[0]);
   };
 
   useEffect(() => {
