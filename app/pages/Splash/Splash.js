@@ -39,7 +39,6 @@ export default function Splash() {
         navigation.reset({ routes: [{ name: "Home" }] });
       }, 5000);
     }
-    // console.log(value);
   };
 
   useEffect(() => {
