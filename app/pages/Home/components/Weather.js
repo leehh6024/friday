@@ -45,7 +45,6 @@ export default function Weather() {
         { latitude, longitude },
         { useGoogleMaps: false }
       );
-      console.log(latitude, longitude);
       createWeatherAPI(latitude, longitude, location[0].city);
     }
     setTimeout(() => weatherAPI(), 2000);
@@ -62,7 +61,6 @@ export default function Weather() {
   };
 
   const createWeatherAPI = async (latitude, longitude, city) => {
-    console.log("create weather");
     const res = await axios.post(`${BASE_IP}/weather/createWeather`, {
       appId: appId,
       latitude,
